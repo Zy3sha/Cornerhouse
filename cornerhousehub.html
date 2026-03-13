@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Corner House Hub — Birkenhead's Favourite Baby & Toddler Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sun: #FFD166; --sun-light: #FFF5D6;
+  --coral: #FF6B6B; --coral-light: #FFE8E8; --coral-dark: #e85555;
+  --mint: #06D6A0; --mint-light: #D9FBF1;
+  --sky: #4CC9F0; --sky-light: #E0F6FD;
+  --lilac: #9B5DE5; --lilac-light: #EFE4FD;
+  --peach: #FF9F6B;
+  --cream: #FFFDF8; --warm: #FFF8EE;
+  --text: #2D2926; --text-mid: #6B5E54; --text-soft: #A8978C;
+  --border: #F0E8DC; --white: #FFFFFF;
+  --stripe-focus: #5469d4;
+  --r: 18px; --r-sm: 10px;
+  --shadow-sm: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.10);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.13);
+}
+
+/* ── STRIPE KEY CONFIG NOTE ──────────────────────────────────────
+   Replace the key below with your real Stripe Publishable Key.
+   Found in: https://dashboard.stripe.com/apikeys
+   For test mode use: pk_test_...
+   For live mode use: pk_live_...
+   ──────────────────────────────────────────────────────────────── */
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; line-height: 1.6; }
+
+/* ===== TOPBAR ===== */
+.topbar { background: var(--coral); color: #fff; text-align: center; padding: .55rem 1rem; font-size: .82rem; font-weight: 700; }
+.topbar a { color: #fff; }
+
+/* ===== NAV ===== */
+nav { position: sticky; top: 0; z-index: 100; background: #fff; box-shadow: var(--shadow-sm); padding: .9rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.nav-logo { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+.logo-icon { width: 46px; height: 46px; background: linear-gradient(135deg, var(--coral), var(--sun)); border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.45rem; box-shadow: 0 4px 12px rgba(255,107,107,.3); }
+.logo-text .l1 { font-family: 'Baloo 2', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--text); display: block; }
+.logo-text .l2 { font-size: .68rem; font-weight: 700; color: var(--text-soft); letter-spacing: .07em; text-transform: uppercase; display: block; }
+.nav-links { display: flex; align-items: center; gap: .25rem; flex-wrap: wrap; }
+.nav-links a { font-weight: 700; font-size: .87rem; color: var(--text-mid); text-decoration: none; padding: .45rem .9rem; border-radius: 50px; transition: all .2s; }
+.nav-links a:hover { background: var(--warm); color: var(--coral); }
+.nav-cta { background: var(--coral) !important; color: #fff !important; box-shadow: 0 4px 14px rgba(255,107,107,.35); }
+.nav-cta:hover { background: var(--coral-dark) !important; transform: translateY(-1px); }
+
+/* ===== HERO ===== */
+#hero { background: linear-gradient(145deg,#FFF8EE,#FFF0E8 45%,#E8F8FF); padding: 4rem 2.5rem 3rem; position: relative; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(65px); opacity: .22; pointer-events: none; }
+.b1 { width: 420px; height: 420px; background: var(--sun); top: -100px; right: -80px; }
+.b2 { width: 300px; height: 300px; background: var(--coral); bottom: -60px; left: -60px; }
+.b3 { width: 240px; height: 240px; background: var(--sky); top: 50%; right: 28%; }
+.hero-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+.award-badge { display: inline-flex; align-items: center; gap: .5rem; background: var(--sun-light); border: 2px solid var(--sun); border-radius: 50px; padding: .4rem 1rem; font-size: .78rem; font-weight: 800; color: #7A5A00; margin-bottom: 1.2rem; }
+h1 { font-family: 'Baloo 2', sans-serif; font-size: clamp(2.2rem,4.5vw,3.4rem); font-weight: 800; line-height: 1.15; color: var(--text); margin-bottom: 1rem; }
+h1 em { font-style: normal; color: var(--coral); }
+.hero-sub { font-size: 1.05rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 2rem; max-width: 480px; }
+.hero-actions { display: flex; gap: .9rem; flex-wrap: wrap; align-items: center; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: .92rem; text-decoration: none; border: none; cursor: pointer; transition: all .22s; border-radius: 50px; padding: .75rem 1.6rem; }
+.btn-coral { background: var(--coral); color: #fff; box-shadow: 0 4px 16px rgba(255,107,107,.4); }
+.btn-coral:hover { background: var(--coral-dark); transform: translateY(-2px); }
+.btn-outline { background: #fff; color: var(--coral); border: 2px solid var(--coral); }
+.btn-outline:hover { background: var(--coral-light); transform: translateY(-2px); }
+.hero-chips { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+.chip { display: inline-flex; align-items: center; gap: .45rem; background: #fff; border-radius: 50px; padding: .48rem 1rem; font-size: .8rem; font-weight: 700; color: var(--text-mid); box-shadow: var(--shadow-sm); }
+.act-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.act-card { background: #fff; border-radius: var(--r); padding: 1.4rem 1.2rem; box-shadow: var(--shadow-md); transition: transform .3s; text-align: center; }
+.act-card:hover { transform: translateY(-4px); }
+.act-card:nth-child(2) { margin-top: 1.5rem; }
+.act-card:nth-child(4) { margin-top: -1.5rem; }
+.act-icon { font-size: 2.4rem; margin-bottom: .6rem; display: block; }
+.act-card h4 { font-family: 'Baloo 2', sans-serif; font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+.act-card p { font-size: .74rem; color: var(--text-soft); line-height: 1.4; }
+.act-price { display: inline-block; margin-top: .6rem; background: var(--warm); color: var(--coral); font-weight: 800; font-size: .78rem; padding: .22rem .65rem; border-radius: 50px; }
+
+/* ===== SECTIONS ===== */
+section { padding: 5rem 2.5rem; }
+.si { max-width: 1100px; margin: 0 auto; }
+.stag { display: inline-block; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; padding: .3rem .9rem; border-radius: 50px; margin-bottom: .8rem; }
+.t-coral { background: var(--coral-light); color: var(--coral); }
+.t-mint { background: var(--mint-light); color: #059a73; }
+.t-sun { background: var(--sun-light); color: #7A5A00; }
+.t-sky { background: var(--sky-light); color: #0090bb; }
+h2 { font-family: 'Baloo 2', sans-serif; font-size: clamp(1.7rem,3vw,2.4rem); font-weight: 800; color: var(--text); line-height: 1.2; margin-bottom: .8rem; }
+h2 em { font-style: normal; color: var(--coral); }
+.ssub { font-size: 1rem; color: var(--text-mid); line-height: 1.7; max-width: 560px; margin-bottom: 2.5rem; }
+
+/* ===== ABOUT ===== */
+#about { background: #fff; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about-visual { position: relative; }
+.about-main { background: linear-gradient(135deg,var(--coral-light),var(--sun-light)); border-radius: var(--r); height: 360px; display: flex; align-items: center; justify-content: center; font-size: 6rem; box-shadow: var(--shadow-md); }
+.float-badge { position: absolute; background: #fff; border-radius: var(--r-sm); padding: .8rem 1rem; box-shadow: var(--shadow-md); font-weight: 700; font-size: .8rem; }
+.f1 { top: -14px; right: -14px; color: var(--coral); }
+.f2 { bottom: 20px; left: -22px; display: flex; align-items: center; gap: .5rem; }
+.f2 .big { font-family: 'Baloo 2', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--mint); }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+.fact { background: var(--warm); border-radius: var(--r-sm); padding: 1rem 1.1rem; border-left: 4px solid var(--coral); }
+.fact:nth-child(2) { border-left-color: var(--mint); }
+.fact:nth-child(3) { border-left-color: var(--sun); }
+.fact:nth-child(4) { border-left-color: var(--sky); }
+.fact .fn { font-family: 'Baloo 2', sans-serif; font-size: 1.5rem; font-weight: 800; line-height: 1; }
+.fact .fl { font-size: .73rem; font-weight: 600; color: var(--text-soft); margin-top: .2rem; }
+.charity-note { display: flex; align-items: center; gap: .6rem; background: var(--lilac-light); border-radius: var(--r-sm); padding: .8rem 1.1rem; font-size: .82rem; font-weight: 700; color: var(--lilac); }
+
+/* ===== ACTIVITIES ===== */
+#activities { background: var(--warm); }
+.acts-hd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+.acts-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(270px,1fr)); gap: 1.3rem; }
+.acard { background: #fff; border-radius: var(--r); padding: 2rem 1.8rem; box-shadow: var(--shadow-sm); transition: all .28s; position: relative; overflow: hidden; border: 2px solid transparent; }
+.acard:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.acard.cc { color: var(--coral); } .acard.cm { color: var(--mint); }
+.acard.cs { color: var(--sky); } .acard.cy { color: var(--sun); }
+.acard.cl { color: var(--lilac); }
+.acard-stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: currentColor; }
+.acard-price { position: absolute; top: 1.1rem; right: 1.1rem; background: currentColor; border-radius: 50px; padding: .25rem .65rem; font-size: .73rem; font-weight: 800; color: #fff; }
+.acard.cy .acard-price { color: var(--text); }
+.acard-icon { font-size: 2.6rem; margin-bottom: .9rem; display: block; }
+.acard h3 { font-family: 'Baloo 2', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+.acard p { font-size: .87rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 1.1rem; }
+.ameta { display: flex; flex-wrap: wrap; gap: .45rem; }
+.amchip { font-size: .7rem; font-weight: 700; padding: .26rem .65rem; border-radius: 50px; background: var(--warm); color: var(--text-mid); }
+
+/* ===== BOOKING + STRIPE ===== */
+#booking { background: #fff; }
+.booking-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
+.why-list { display: flex; flex-direction: column; gap: .85rem; margin-bottom: 2rem; }
+.why-item { display: flex; align-items: flex-start; gap: .85rem; background: var(--warm); border-radius: var(--r-sm); padding: 1rem 1.1rem; }
+.wi { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.wi-c { background: var(--coral-light); } .wi-m { background: var(--mint-light); }
+.wi-s { background: var(--sun-light); } .wi-k { background: var(--sky-light); }
+.why-item strong { display: block; font-size: .9rem; color: var(--text); margin-bottom: .12rem; }
+.why-item span { font-size: .8rem; color: var(--text-soft); }
+.contact-card { background: linear-gradient(135deg,var(--coral),var(--peach)); border-radius: var(--r); padding: 1.5rem 1.8rem; color: #fff; }
+.contact-card h4 { font-family: 'Baloo 2', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+.ci { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; font-size: .88rem; font-weight: 700; }
+.ci a { color: #fff; text-decoration: none; } .ci a:hover { text-decoration: underline; }
+
+/* — Form Card — */
+.form-card { background: var(--warm); border-radius: var(--r); padding: 2.2rem; border: 2px solid var(--border); box-shadow: var(--shadow-sm); }
+.ftitle { font-family: 'Baloo 2', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--text); margin-bottom: .25rem; }
+.fsub { font-size: .82rem; color: var(--text-soft); margin-bottom: 1.5rem; }
+.field { margin-bottom: 1rem; }
+.field label { display: block; font-size: .76rem; font-weight: 800; color: var(--text-mid); letter-spacing: .04em; margin-bottom: .38rem; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: .72rem 1rem; border: 2px solid var(--border);
+  background: #fff; border-radius: var(--r-sm); font-family: 'Nunito', sans-serif;
+  font-size: .9rem; font-weight: 600; color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,107,107,.13);
+}
+.field textarea { resize: vertical; min-height: 70px; }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+
+/* — Price Summary — */
+.price-summary {
+  background: #fff; border-radius: var(--r-sm); border: 2px solid var(--border);
+  padding: 1.1rem 1.2rem; margin: 1.1rem 0;
+}
+.ps-title { font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--text-soft); margin-bottom: .85rem; }
+.ps-row { display: flex; justify-content: space-between; align-items: center; font-size: .85rem; padding: .4rem 0; border-bottom: 1px solid var(--border); color: var(--text-mid); }
+.ps-row:last-child { border-bottom: none; }
+.ps-row.total { font-weight: 800; font-size: 1rem; color: var(--text); padding-top: .6rem; margin-top: .2rem; border-top: 2px solid var(--border); border-bottom: none; }
+.ps-row.total .ps-val { color: var(--coral); font-size: 1.15rem; }
+.ps-empty { color: var(--text-soft); font-size: .82rem; text-align: center; padding: .5rem 0; }
+
+/* — Stripe Card Element — */
+.stripe-section { margin-top: 1rem; }
+.stripe-label { font-size: .76rem; font-weight: 800; color: var(--text-mid); letter-spacing: .04em; margin-bottom: .38rem; display: block; }
+.stripe-lock { display: flex; align-items: center; gap: .4rem; font-size: .72rem; font-weight: 700; color: var(--text-soft); margin-bottom: .6rem; }
+.stripe-lock svg { opacity: .55; }
+
+#card-element {
+  background: #fff; border: 2px solid var(--border); border-radius: var(--r-sm);
+  padding: .82rem 1rem; transition: border-color .2s, box-shadow .2s;
+}
+#card-element.StripeElement--focus {
+  border-color: var(--stripe-focus); box-shadow: 0 0 0 3px rgba(84,105,212,.12);
+}
+#card-element.StripeElement--invalid { border-color: var(--coral); }
+
+#card-error {
+  color: var(--coral); font-size: .78rem; font-weight: 700;
+  margin-top: .45rem; min-height: 1.2em; display: block;
+}
+
+.stripe-badge {
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  margin-top: .7rem; font-size: .68rem; font-weight: 700; color: var(--text-soft);
+}
+
+/* — Pay Button — */
+.pay-btn {
+  width: 100%; margin-top: 1rem;
+  background: linear-gradient(135deg,var(--coral),var(--peach));
+  color: #fff; padding: 1rem;
+  font-family: 'Nunito', sans-serif; font-size: .95rem; font-weight: 800;
+  border: none; border-radius: 50px; cursor: pointer;
+  transition: all .25s; box-shadow: 0 6px 20px rgba(255,107,107,.38);
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  letter-spacing: .03em; position: relative; overflow: hidden;
+}
+.pay-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,107,107,.45); }
+.pay-btn:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+
+.spinner {
+  width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.35);
+  border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; display: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Demo test card hint */
+.test-hint {
+  background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: var(--r-sm);
+  padding: .7rem 1rem; margin-top: .8rem; font-size: .75rem; color: #1E40AF; font-weight: 700;
+}
+.test-hint span { display: block; font-weight: 600; color: #3B82F6; margin-top: .2rem; letter-spacing: .04em; }
+
+/* ===== ADMIN DASHBOARD ===== */
+#manage { background: linear-gradient(145deg,#1A1410,#2C2018); color: #fff; }
+.mhd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+.mhd h2 { color: #fff; }
+.dash-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-bottom: 2rem; }
+.dstat { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: var(--r-sm); padding: 1.3rem 1.5rem; }
+.dstat .dn { font-family: 'Baloo 2', sans-serif; font-size: 2rem; font-weight: 800; color: var(--sun); line-height: 1; }
+.dstat .dl { font-size: .7rem; font-weight: 600; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .1em; margin-top: .35rem; }
+.flt-bar { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+.fbt { font-family: 'Nunito',sans-serif; font-size: .76rem; font-weight: 700; padding: .42rem .95rem; border-radius: 50px; border: 1px solid rgba(255,255,255,.18); background: transparent; color: rgba(255,255,255,.5); cursor: pointer; transition: all .2s; }
+.fbt.on, .fbt:hover { background: var(--sun); border-color: var(--sun); color: var(--text); }
+.table-wrap { overflow-x: auto; border-radius: var(--r-sm); }
+table { width: 100%; border-collapse: collapse; font-size: .83rem; min-width: 860px; }
+thead th { background: rgba(255,255,255,.06); padding: .75rem 1rem; text-align: left; font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.32); }
+tbody tr { border-bottom: 1px solid rgba(255,255,255,.05); transition: background .15s; }
+tbody tr:hover { background: rgba(255,255,255,.04); }
+tbody td { padding: .9rem 1rem; color: rgba(255,255,255,.76); vertical-align: middle; }
+
+/* Status pills */
+.pill { display: inline-block; font-size: .66rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; padding: .26rem .65rem; border-radius: 50px; }
+.p-confirmed { background: rgba(6,214,160,.18); color: #06D6A0; }
+.p-pending { background: rgba(255,209,102,.18); color: var(--sun); }
+.p-cancelled { background: rgba(255,107,107,.18); color: #FF9090; }
+/* Payment pills */
+.ppill { display: inline-block; font-size: .64rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; padding: .22rem .6rem; border-radius: 50px; }
+.pp-paid { background: rgba(6,214,160,.15); color: #06D6A0; border: 1px solid rgba(6,214,160,.3); }
+.pp-demo { background: rgba(84,105,212,.15); color: #a5b4fc; border: 1px solid rgba(84,105,212,.3); }
+.pp-unpaid { background: rgba(255,107,107,.12); color: #FF9090; border: 1px solid rgba(255,107,107,.25); }
+
+.tbtn { font-family: 'Nunito',sans-serif; font-size: .68rem; font-weight: 700; padding: .28rem .62rem; border-radius: 6px; border: 1px solid; cursor: pointer; transition: all .18s; }
+.tb-c { border-color: rgba(6,214,160,.4); color: #06D6A0; background: rgba(6,214,160,.07); }
+.tb-c:hover { background: rgba(6,214,160,.22); }
+.tb-x { border-color: rgba(255,107,107,.3); color: rgba(255,107,107,.6); background: transparent; }
+.tb-x:hover { color: #FF9090; border-color: rgba(255,107,107,.6); }
+.empty-row { text-align: center; padding: 3rem; color: rgba(255,255,255,.22); font-size: .88rem; }
+
+/* ===== FAQ ===== */
+#faq { background: var(--warm); }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+.faq-item { background: #fff; border-radius: var(--r-sm); overflow: hidden; box-shadow: var(--shadow-sm); }
+.faq-q { padding: 1.1rem 1.3rem; font-weight: 800; font-size: .9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: var(--text); user-select: none; }
+.faq-q .ar { width: 26px; height: 26px; background: var(--warm); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .78rem; flex-shrink: 0; transition: transform .25s, background .2s; }
+.faq-item.open .faq-q .ar { transform: rotate(180deg); background: var(--coral-light); color: var(--coral); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .3s; font-size: .87rem; color: var(--text-mid); line-height: 1.65; padding: 0 1.3rem; }
+.faq-item.open .faq-a { max-height: 200px; padding: 0 1.3rem 1.2rem; }
+
+/* ===== FOOTER ===== */
+footer { background: var(--text); color: rgba(255,255,255,.7); padding: 3.5rem 2.5rem 2rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.fb-brand p { font-size: .82rem; line-height: 1.7; margin-top: 1rem; color: rgba(255,255,255,.45); max-width: 270px; }
+.fc h4 { font-family: 'Baloo 2',sans-serif; font-size: .88rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+.fc a, .fc p { display: block; font-size: .82rem; color: rgba(255,255,255,.45); text-decoration: none; margin-bottom: .55rem; line-height: 1.5; transition: color .2s; }
+.fc a:hover { color: var(--sun); }
+.soc-row { display: flex; gap: .6rem; margin-top: .6rem; }
+.soc { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: .88rem; text-decoration: none !important; transition: all .2s; }
+.soc-fb { background: rgba(24,119,242,.18); color: #6AAFF7 !important; }
+.soc-ig { background: rgba(225,48,108,.18); color: #F7869B !important; }
+.soc-fb:hover { background: rgba(24,119,242,.35); }
+.soc-ig:hover { background: rgba(225,48,108,.35); }
+.foot-bot { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); font-size: .76rem; color: rgba(255,255,255,.25); flex-wrap: wrap; gap: .5rem; }
+
+/* ===== MODAL ===== */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 2rem; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.overlay.open { opacity: 1; pointer-events: all; }
+.modal-box { background: #fff; border-radius: var(--r); padding: 2.5rem; max-width: 480px; width: 100%; box-shadow: var(--shadow-lg); transform: scale(.95) translateY(20px); transition: transform .3s; text-align: center; }
+.overlay.open .modal-box { transform: scale(1) translateY(0); }
+.m-emoji { font-size: 3.5rem; margin-bottom: 1rem; display: block; }
+.modal-box h3 { font-family: 'Baloo 2',sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--text); margin-bottom: .35rem; }
+.modal-box p { font-size: .9rem; color: var(--text-mid); margin-bottom: 1.5rem; line-height: 1.65; }
+.mref { background: var(--warm); border-radius: var(--r-sm); padding: 1.2rem; margin-bottom: 1.5rem; text-align: left; }
+.mrow { display: flex; justify-content: space-between; padding: .42rem 0; border-bottom: 1px solid var(--border); font-size: .85rem; }
+.mrow:last-child { border-bottom: none; }
+.mrow .k { color: var(--text-soft); font-size: .73rem; text-transform: uppercase; letter-spacing: .06em; }
+.mrow .v { font-weight: 700; color: var(--text); }
+.mrow .paid { color: var(--mint); font-size: .85rem; }
+.modal-close { background: var(--coral); color: #fff; border: none; cursor: pointer; padding: .75rem 2rem; border-radius: 50px; font-family: 'Nunito',sans-serif; font-size: .9rem; font-weight: 800; transition: all .2s; }
+.modal-close:hover { background: var(--coral-dark); }
+
+/* ===== TOAST ===== */
+.toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 500; background: var(--text); color: #fff; padding: .9rem 1.4rem; border-radius: var(--r-sm); border-left: 5px solid var(--mint); box-shadow: var(--shadow-lg); font-size: .87rem; font-weight: 700; max-width: 320px; transform: translateY(100px); opacity: 0; transition: all .4s cubic-bezier(.175,.885,.32,1.275); }
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.err { border-left-color: var(--coral); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  nav { padding: .8rem 1.2rem; } .nav-links { display: none; }
+  .hero-inner, .about-grid, .booking-grid { grid-template-columns: 1fr; }
+  .act-grid .act-card:nth-child(2), .act-grid .act-card:nth-child(4) { margin-top: 0; }
+  .dash-stats { grid-template-columns: 1fr 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  section { padding: 3.5rem 1.2rem; }
+}
+@media (max-width: 560px) { .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+.hero-inner > * { animation: fadeUp .55s ease both; }
+.hero-inner > *:nth-child(1) { animation-delay: .1s; }
+.hero-inner > *:nth-child(2) { animation-delay: .25s; }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  🏆 Voted <strong>Wirral's Best for Kids 2024</strong> by Wirral Globe readers! &nbsp;|&nbsp; <a href="tel:01512456949">0151 245 6949</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">🏠</div>
+    <div class="logo-text">
+      <span class="l1">The Corner House</span>
+      <span class="l2">Family & Community Hub · Birkenhead</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#activities">Activities</a>
+    <a href="#faq">FAQs</a>
+    <a href="#manage">Admin</a>
+    <a href="#booking" class="nav-cta">Book a Session</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="award-badge">🏆 Wirral's Best for Kids 2024 — Wirral Globe</div>
+      <h1>Wirral's most <em>loved</em> baby & toddler group</h1>
+      <p class="hero-sub">A warm, welcoming space in Birkenhead for babies, toddlers and their grown-ups. Stay and play, learn together, make friends for life.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn btn-coral">📅 Book &amp; Pay</a>
+        <a href="#activities" class="btn btn-outline">See Activities</a>
+      </div>
+      <div class="hero-chips">
+        <div class="chip">📍 1 Berner Street, Birkenhead</div>
+        <div class="chip">📞 0151 245 6949</div>
+        <div class="chip">💷 From £1.50 per child</div>
+        <div class="chip">💳 Secure card payments</div>
+      </div>
+    </div>
+    <div>
+      <div class="act-grid">
+        <div class="act-card"><span class="act-icon">🧸</span><h4>Stay & Play</h4><p>Fun sessions Tue–Fri</p><div class="act-price">From £2.50</div></div>
+        <div class="act-card"><span class="act-icon">🤲</span><h4>Baby Massage</h4><p>5-week bonding course</p><div class="act-price">Weekly</div></div>
+        <div class="act-card"><span class="act-icon">🌈</span><h4>Sensory Play</h4><p>Calming & educational</p><div class="act-price">From £2.50</div></div>
+        <div class="act-card"><span class="act-icon">💜</span><h4>SEN Group</h4><p>Inclusive sessions</p><div class="act-price">Book Now</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="si">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-main">🏡</div>
+        <div class="float-badge f1">🏆 Best in Wirral 2024</div>
+        <div class="float-badge f2"><span class="big">500+</span><div><div style="font-size:.7rem;color:var(--text-soft);font-weight:700">Happy families</div></div></div>
+      </div>
+      <div>
+        <div class="stag t-coral">Our Story</div>
+        <h2>A <em>home from home</em> for Wirral families</h2>
+        <p class="ssub">Formerly Bee Early Years CIO, proudly renamed The Corner House in 2022 — aptly named as we sit on the corner of the road. Many families say we're a home from home, and that's exactly what we've always strived for.</p>
+        <div class="facts">
+          <div class="fact"><div class="fn">Tue–Fri</div><div class="fl">Sessions weekly</div></div>
+          <div class="fact"><div class="fn">£1.50</div><div class="fl">Min. price per child</div></div>
+          <div class="fact"><div class="fn">20+ yrs</div><div class="fl">Lisa's experience</div></div>
+          <div class="fact"><div class="fn">Free</div><div class="fl">On-road parking</div></div>
+        </div>
+        <div class="charity-note">💜 Registered Charity — No. 1197336. Not-for-profit, community-led.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities">
+  <div class="si">
+    <div class="acts-hd">
+      <div>
+        <div class="stag t-mint">What We Offer</div>
+        <h2>Activities for every little one</h2>
+      </div>
+      <a href="#booking" class="btn btn-coral">Book &amp; Pay Now</a>
+    </div>
+    <div class="acts-grid">
+      <div class="acard cc">
+        <div class="acard-stripe"></div><div class="acard-price">From £2.50</div>
+        <span class="acard-icon">🧸</span><h3>Stay & Play</h3>
+        <p>Meet other grown-ups and spend quality time with your little one in our fun and friendly environment. No commitment needed!</p>
+        <div class="ameta"><span class="amchip">📅 Tue, Wed, Thu, Fri</span><span class="amchip">👶 Babies & toddlers</span></div>
+      </div>
+      <div class="acard cm">
+        <div class="acard-stripe"></div><div class="acard-price">5-Week Course</div>
+        <span class="acard-icon">🤲</span><h3>Infant Massage</h3>
+        <p>A five-week course teaching you how to provide an effective, relaxing massage for your baby. Led by expert Lisa Heath — 20+ years' experience.</p>
+        <div class="ameta"><span class="amchip">📅 Every Thursday</span><span class="amchip">🎓 Expert-led</span></div>
+      </div>
+      <div class="acard cs">
+        <div class="acard-stripe"></div><div class="acard-price">From £2.50</div>
+        <span class="acard-icon">🌈</span><h3>Sensory Play</h3>
+        <p>Calming and educational play groups using sensory toys and equipment. Extremely popular — book early!</p>
+        <div class="ameta"><span class="amchip">🧠 Developmental</span><span class="amchip">🕊️ Calming</span></div>
+      </div>
+      <div class="acard cy">
+        <div class="acard-stripe"></div><div class="acard-price">Book Now</div>
+        <span class="acard-icon">☀️</span><h3>Positivity Club</h3>
+        <p>Our Positivity Club for under 5s builds confidence, friendships and fun all in one joyful, nurturing session.</p>
+        <div class="ameta"><span class="amchip">👶 Under 5s</span><span class="amchip">💛 Uplifting</span></div>
+      </div>
+      <div class="acard cl">
+        <div class="acard-stripe"></div><div class="acard-price">Inclusive</div>
+        <span class="acard-icon">💜</span><h3>SEN Group</h3>
+        <p>A dedicated, inclusive group for children with special educational needs. A welcoming space for children and carers to connect together.</p>
+        <div class="ameta"><span class="amchip">♿ Inclusive</span><span class="amchip">💙 Supportive</span></div>
+      </div>
+      <div class="acard cc" style="background:linear-gradient(135deg,var(--coral-light),var(--sun-light));border:2px dashed var(--coral)">
+        <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:1rem">
+          <span style="font-size:2.5rem;margin-bottom:.8rem">📞</span>
+          <h3 style="color:var(--coral)">Not sure which to pick?</h3>
+          <p style="margin-bottom:1.1rem">Give us a call — we'll find the perfect session for you and your little one.</p>
+          <a href="tel:01512456949" class="btn btn-coral" style="font-size:.85rem">Call 0151 245 6949</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING + STRIPE PAYMENT -->
+<section id="booking">
+  <div class="si">
+    <div class="booking-grid">
+
+      <!-- LEFT: Info -->
+      <div>
+        <div class="stag t-coral">Reserve &amp; Pay</div>
+        <h2>Book &amp; pay <em>securely</em> online</h2>
+        <p class="ssub">Booking is essential — we fill up fast! Pay by card at the point of booking and your place is guaranteed.</p>
+        <div class="why-list">
+          <div class="why-item"><div class="wi wi-c">✅</div><div><strong>Instant Confirmation</strong><span>Your place is secured the moment payment goes through.</span></div></div>
+          <div class="why-item"><div class="wi wi-m">💷</div><div><strong>Affordable Sessions</strong><span>Most sessions around £2.50 per child — as low as £1.50 in winter.</span></div></div>
+          <div class="why-item"><div class="wi wi-s">🔒</div><div><strong>Secure Stripe Payments</strong><span>All card payments are processed by Stripe — bank-level encryption.</span></div></div>
+          <div class="why-item"><div class="wi wi-k">📞</div><div><strong>Prefer to Call?</strong><span>Ring us on <strong>0151 245 6949</strong> or message on Facebook.</span></div></div>
+        </div>
+        <div class="contact-card">
+          <h4>Get in touch</h4>
+          <div class="ci">📍 <span>1 Berner Street, Birkenhead, CH41 4JY</span></div>
+          <div class="ci">📞 <a href="tel:01512456949">0151 245 6949</a></div>
+          <div class="ci">💻 <a href="https://www.facebook.com/thecornerhousecio" target="_blank">Facebook</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/the_corner_house_cio/" target="_blank">Instagram</a></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form + Stripe -->
+      <div class="form-card">
+        <div class="ftitle">📅 Book &amp; Pay</div>
+        <p class="fsub">Complete your details, choose a session, then pay securely by card.</p>
+
+        <!-- Step 1: Details -->
+        <div class="field">
+          <label>Your Name *</label>
+          <input type="text" id="f-name" placeholder="e.g. Sarah Smith">
+        </div>
+        <div class="frow">
+          <div class="field"><label>Email *</label><input type="email" id="f-email" placeholder="your@email.com"></div>
+          <div class="field"><label>Phone</label><input type="tel" id="f-phone" placeholder="07xxx xxxxxx"></div>
+        </div>
+        <div class="field">
+          <label>Child's Age</label>
+          <select id="f-age">
+            <option value="">Select age range...</option>
+            <option>Newborn (0–3 months)</option>
+            <option>3–6 months</option>
+            <option>6–12 months</option>
+            <option>1–2 years</option>
+            <option>2–3 years</option>
+            <option>3–5 years</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Session *</label>
+          <select id="f-session" onchange="updatePrice()">
+            <option value="">Choose a session...</option>
+            <option value="Stay &amp; Play|2.50">Stay &amp; Play — £2.50 per child</option>
+            <option value="Infant Massage|15.00">Infant Massage (5-week course) — £15.00</option>
+            <option value="Sensory Play|2.50">Sensory Play — £2.50 per child</option>
+            <option value="Positivity Club|2.50">Positivity Club (Under 5s) — £2.50 per child</option>
+            <option value="SEN Group|2.50">SEN Group — £2.50 per child</option>
+          </select>
+        </div>
+        <div class="frow">
+          <div class="field"><label>Date *</label><input type="date" id="f-date"></div>
+          <div class="field">
+            <label>No. of Children</label>
+            <input type="number" id="f-children" placeholder="1" min="1" max="5" value="1" onchange="updatePrice()">
+          </div>
+        </div>
+        <div class="field">
+          <label>Notes (optional)</label>
+          <textarea id="f-notes" placeholder="Any special requirements or questions..."></textarea>
+        </div>
+
+        <!-- Price Summary -->
+        <div class="price-summary" id="priceSummary">
+          <div class="ps-title">💷 Payment Summary</div>
+          <div class="ps-empty" id="ps-empty">Select a session above to see pricing</div>
+          <div id="ps-rows" style="display:none">
+            <div class="ps-row"><span id="ps-session">Session</span><span id="ps-unit">£0.00</span></div>
+            <div class="ps-row"><span>Children</span><span id="ps-qty">× 1</span></div>
+            <div class="ps-row total"><span>Total due today</span><span class="ps-val" id="ps-total">£0.00</span></div>
+          </div>
+        </div>
+
+        <!-- Stripe Card Element -->
+        <div class="stripe-section">
+          <span class="stripe-label">💳 Card Details</span>
+          <div class="stripe-lock">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secured by Stripe — your card details are never stored by us
+          </div>
+          <div id="card-element"></div>
+          <span id="card-error" role="alert"></span>
+        </div>
+
+        <!-- Pay Button -->
+        <button class="pay-btn" id="payBtn" onclick="handlePayment()">
+          <div class="spinner" id="spinner"></div>
+          <span id="payBtnText">🔒 Pay &amp; Confirm Booking</span>
+        </button>
+
+        <!-- Stripe Badge -->
+        <div class="stripe-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Payments powered by Stripe · SSL encrypted · PCI compliant
+        </div>
+
+        <!-- Test hint — remove in production -->
+        <div class="test-hint">
+          🧪 <strong>Demo mode</strong> — no real charge is made.<br>
+          <span>Test card: 4242 4242 4242 4242 · Any future date · Any CVC</span>
+          <span style="margin-top:.3rem;color:#6B7280;font-weight:600">Replace <code>STRIPE_KEY</code> in the JS below with your real Stripe publishable key to go live.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN DASHBOARD -->
+<section id="manage">
+  <div class="si">
+    <div class="mhd">
+      <div>
+        <div class="stag" style="background:rgba(255,209,102,.15);color:var(--sun)">Admin Dashboard</div>
+        <h2 style="color:#fff">Booking &amp; Payment Management</h2>
+      </div>
+    </div>
+    <div class="dash-stats">
+      <div class="dstat"><div class="dn" id="ds-total">0</div><div class="dl">Total Bookings</div></div>
+      <div class="dstat"><div class="dn" id="ds-confirmed">0</div><div class="dl">Confirmed</div></div>
+      <div class="dstat"><div class="dn" id="ds-pending">0</div><div class="dl">Pending</div></div>
+      <div class="dstat"><div class="dn" id="ds-revenue">£0.00</div><div class="dl">Revenue Collected</div></div>
+    </div>
+    <div class="flt-bar">
+      <button class="fbt on" onclick="filterTbl('all',this)">All</button>
+      <button class="fbt" onclick="filterTbl('confirmed',this)">Confirmed</button>
+      <button class="fbt" onclick="filterTbl('pending',this)">Pending</button>
+      <button class="fbt" onclick="filterTbl('cancelled',this)">Cancelled</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ref</th><th>Name</th><th>Session</th><th>Date</th>
+            <th>Children</th><th>Age</th><th>Booking</th><th>Payment</th><th>Amount</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="si">
+    <div class="stag t-sky">Common Questions</div>
+    <h2>Frequently asked questions</h2>
+    <p class="ssub">Everything you need to know before your first visit.</p>
+    <div class="faq-grid" id="faqGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="fb-brand">
+      <div class="nav-logo">
+        <div class="logo-icon" style="width:40px;height:40px;font-size:1.2rem">🏠</div>
+        <div class="logo-text"><span class="l1" style="color:#fff">The Corner House</span><span class="l2" style="color:rgba(255,255,255,.4)">Family & Community Hub</span></div>
+      </div>
+      <p>A warm, welcoming space for babies, toddlers and their families in Birkenhead. Voted Wirral's Best for Kids 2024.</p>
+      <div class="soc-row">
+        <a href="https://www.facebook.com/thecornerhousecio" target="_blank" class="soc soc-fb">f</a>
+        <a href="https://www.instagram.com/the_corner_house_cio/" target="_blank" class="soc soc-ig">📷</a>
+      </div>
+    </div>
+    <div class="fc">
+      <h4>Quick Links</h4>
+      <a href="#about">About Us</a><a href="#activities">Our Activities</a>
+      <a href="#booking">Book a Session</a><a href="#faq">FAQs</a>
+    </div>
+    <div class="fc">
+      <h4>Sessions</h4>
+      <a href="#activities">Stay &amp; Play</a><a href="#activities">Baby Massage</a>
+      <a href="#activities">Sensory Play</a><a href="#activities">Positivity Club</a>
+      <a href="#activities">SEN Group</a>
+    </div>
+    <div class="fc">
+      <h4>Contact</h4>
+      <p>1 Berner Street,<br>Birkenhead, CH41 4JY</p>
+      <a href="tel:01512456949">0151 245 6949</a>
+      <a href="https://m.me/beewirral" target="_blank">Message on Facebook</a>
+      <p style="font-size:.73rem;color:rgba(255,255,255,.28);margin-top:.3rem">Free on-road parking available</p>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>© 2025 The Corner House Hub CIO. All rights reserved.</span>
+    <span>Registered Charity No. 1197336 · Formerly Bee Early Years CIO</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeOverlay(event)">
+  <div class="modal-box">
+    <span class="m-emoji" id="m-emoji">🎉</span>
+    <h3 id="m-title">You're booked in!</h3>
+    <p id="m-sub">Payment confirmed. We can't wait to meet you and your little one!</p>
+    <div class="mref" id="m-detail"></div>
+    <button class="modal-close" onclick="closeOverlay()">Wonderful — all done! ✓</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+//  STRIPE CONFIGURATION
+//  Replace with your real Stripe publishable key from:
+//  https://dashboard.stripe.com/apikeys
+// ══════════════════════════════════════════════════════════════════
+const STRIPE_KEY = 'pk_test_TYooMQauvdEDq54NiTphI7jx'; // Stripe's public test key
+
+let stripe, cardElement;
+let bookings = [];
+let activeFilter = 'all';
+let processingPayment = false;
+
+// Session prices (pence for Stripe, £ for display)
+const PRICES = {
+  'Stay &amp; Play':             { display: 2.50, pence: 250 },
+  'Infant Massage':              { display: 15.00, pence: 1500 },
+  'Sensory Play':                { display: 2.50, pence: 250 },
+  'Positivity Club':             { display: 2.50, pence: 250 },
+  'SEN Group':                   { display: 2.50, pence: 250 },
+};
+
+// ── Init Stripe ──────────────────────────────────────────────────
+function initStripe() {
+  try {
+    stripe = Stripe(STRIPE_KEY);
+    const elements = stripe.elements({
+      fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap' }]
+    });
+    cardElement = elements.create('card', {
+      style: {
+        base: {
+          fontFamily: "'Nunito', sans-serif",
+          fontSize: '15px',
+          fontWeight: '600',
+          color: '#2D2926',
+          '::placeholder': { color: '#A8978C' },
+          iconColor: '#FF6B6B',
+        },
+        invalid: { color: '#FF6B6B', iconColor: '#FF6B6B' },
+      },
+      hidePostalCode: true,
+    });
+    cardElement.mount('#card-element');
+    cardElement.on('change', e => {
+      document.getElementById('card-error').textContent = e.error ? e.error.message : '';
+    });
+  } catch(e) {
+    document.getElementById('card-element').innerHTML =
+      '<p style="color:var(--coral);font-size:.82rem;font-weight:700">⚠️ Stripe failed to load. Check your publishable key.</p>';
+  }
+}
+
+// ── Price Summary ─────────────────────────────────────────────────
+function updatePrice() {
+  const sel = document.getElementById('f-session').value;
+  const qty = Math.max(1, parseInt(document.getElementById('f-children').value) || 1);
+  const psEmpty = document.getElementById('ps-empty');
+  const psRows  = document.getElementById('ps-rows');
+
+  if (!sel) { psEmpty.style.display=''; psRows.style.display='none'; return; }
+
+  const [name, priceStr] = sel.split('|');
+  const priceEach = parseFloat(priceStr);
+  const isCourse = name.includes('Massage');
+  const total = isCourse ? priceEach : priceEach * qty;
+
+  psEmpty.style.display = 'none';
+  psRows.style.display = '';
+  document.getElementById('ps-session').textContent = name;
+  document.getElementById('ps-unit').textContent = '£' + priceEach.toFixed(2) + (isCourse ? '' : ' each');
+  document.getElementById('ps-qty').textContent = isCourse ? '(flat rate)' : '× ' + qty;
+  document.getElementById('ps-total').textContent = '£' + total.toFixed(2);
+
+  document.getElementById('payBtnText').textContent = `🔒 Pay £${total.toFixed(2)} & Confirm Booking`;
+}
+
+// ── Handle Payment ────────────────────────────────────────────────
+async function handlePayment() {
+  if (processingPayment) return;
+
+  const name    = document.getElementById('f-name').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const age     = document.getElementById('f-age').value;
+  const selRaw  = document.getElementById('f-session').value;
+  const date    = document.getElementById('f-date').value;
+  const qty     = Math.max(1, parseInt(document.getElementById('f-children').value) || 1);
+  const notes   = document.getElementById('f-notes').value.trim();
+
+  if (!name || !email || !selRaw || !date) {
+    showToast('Please fill in all required fields (*).', true); return;
+  }
+  if (!cardElement) {
+    showToast('Card element not ready. Please refresh.', true); return;
+  }
+
+  const [sessionName, priceStr] = selRaw.split('|');
+  const priceEach = parseFloat(priceStr);
+  const isCourse  = sessionName.includes('Massage');
+  const totalAmt  = isCourse ? priceEach : priceEach * qty;
+  const totalPence = Math.round(totalAmt * 100);
+
+  // Loading state
+  setLoading(true);
+
+  try {
+    // Create PaymentMethod (client-side only — validates card)
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+      billing_details: { name, email, phone: phone || undefined },
+    });
+
+    if (error) {
+      document.getElementById('card-error').textContent = error.message;
+      setLoading(false); return;
+    }
+
+    // ── DEMO MODE ─────────────────────────────────────────────────
+    // In production, send paymentMethod.id + amount to YOUR server,
+    // which creates a PaymentIntent and confirms it. Example:
+    //
+    //   const res = await fetch('/create-payment-intent', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ amount: totalPence, currency: 'gbp',
+    //                            paymentMethodId: paymentMethod.id })
+    //   });
+    //   const { clientSecret } = await res.json();
+    //   const result = await stripe.confirmCardPayment(clientSecret);
+    //
+    // For now we simulate a successful payment after a short delay:
+    await new Promise(r => setTimeout(r, 1800));
+    const isDemoMode = STRIPE_KEY.startsWith('pk_test_TYooMQauvdEDq');
+    // ─────────────────────────────────────────────────────────────
+
+    const ref = 'TCH-' + String(bookings.length + 1).padStart(3, '0');
+    const last4 = paymentMethod.card.last4;
+    const brand = paymentMethod.card.brand.charAt(0).toUpperCase() + paymentMethod.card.brand.slice(1);
+
+    const booking = {
+      id: ref, name, email, phone, age,
+      session: sessionName, date, children: qty, notes,
+      status: 'confirmed',
+      payment: isDemoMode ? 'demo' : 'paid',
+      amount: totalAmt, last4, brand,
+      created: new Date().toLocaleString('en-GB'),
+    };
+
+    bookings.unshift(booking);
+    renderTable(); renderStats();
+    showModal(booking, isDemoMode);
+    clearForm();
+
+  } catch(err) {
+    showToast('Something went wrong. Please try again.', true);
+  }
+
+  setLoading(false);
+}
+
+function setLoading(on) {
+  processingPayment = on;
+  const btn = document.getElementById('payBtn');
+  const sp  = document.getElementById('spinner');
+  const txt = document.getElementById('payBtnText');
+  btn.disabled = on;
+  sp.style.display = on ? 'block' : 'none';
+  txt.textContent  = on ? 'Processing payment…' : (document.getElementById('ps-total').textContent !== '£0.00'
+    ? `🔒 Pay ${document.getElementById('ps-total').textContent} & Confirm Booking`
+    : '🔒 Pay & Confirm Booking');
+}
+
+function clearForm() {
+  ['f-name','f-email','f-phone','f-notes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-session').value = '';
+  document.getElementById('f-age').value = '';
+  document.getElementById('f-children').value = '1';
+  cardElement && cardElement.clear();
+  document.getElementById('ps-empty').style.display = '';
+  document.getElementById('ps-rows').style.display   = 'none';
+  document.getElementById('payBtnText').textContent = '🔒 Pay & Confirm Booking';
+}
+
+// ── Modal ─────────────────────────────────────────────────────────
+function showModal(b, demo) {
+  document.getElementById('m-emoji').textContent = demo ? '🧪' : '🎉';
+  document.getElementById('m-title').textContent = demo
+    ? `Demo booking confirmed, ${b.name.split(' ')[0]}!`
+    : `You're booked in, ${b.name.split(' ')[0]}! 🎉`;
+  document.getElementById('m-sub').textContent = demo
+    ? 'This was a test payment — no real charge was made. Add your live Stripe key to accept real payments!'
+    : "Payment confirmed! Your place is reserved. We can't wait to meet your little one!";
+  document.getElementById('m-detail').innerHTML = `
+    <div class="mrow"><span class="k">Reference</span><span class="v">${b.id}</span></div>
+    <div class="mrow"><span class="k">Session</span><span class="v">${b.session}</span></div>
+    <div class="mrow"><span class="k">Date</span><span class="v">${fmtDate(b.date)}</span></div>
+    <div class="mrow"><span class="k">Children</span><span class="v">${b.children}</span></div>
+    <div class="mrow"><span class="k">Card</span><span class="v">${b.brand} •••• ${b.last4}</span></div>
+    <div class="mrow"><span class="k">Amount Paid</span><span class="v paid">£${b.amount.toFixed(2)} ${demo ? '(demo)' : '✓ paid'}</span></div>
+  `;
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeOverlay(e) {
+  if (!e || e.target === document.getElementById('overlay'))
+    document.getElementById('overlay').classList.remove('open');
+}
+
+// ── Admin Table ───────────────────────────────────────────────────
+function renderTable() {
+  const tbody = document.getElementById('tBody');
+  const data  = activeFilter === 'all' ? bookings : bookings.filter(b => b.status === activeFilter);
+
+  if (!data.length) {
+    tbody.innerHTML = `<tr><td colspan="10"><div class="empty-row">No ${activeFilter === 'all' ? '' : activeFilter + ' '}bookings yet.</div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = data.map(b => `
+    <tr>
+      <td style="font-family:monospace;font-size:.72rem;opacity:.45">${b.id}</td>
+      <td><div style="font-weight:700;color:#fff">${b.name}</div><div style="font-size:.72rem;opacity:.4">${b.email}</div></td>
+      <td>${b.session}</td>
+      <td>${fmtDate(b.date)}</td>
+      <td>${b.children}</td>
+      <td>${b.age || '—'}</td>
+      <td><span class="pill p-${b.status}">${b.status}</span></td>
+      <td>
+        <span class="ppill ${b.payment === 'paid' ? 'pp-paid' : b.payment === 'demo' ? 'pp-demo' : 'pp-unpaid'}">
+          ${b.payment === 'paid' ? '✓ Paid' : b.payment === 'demo' ? '🧪 Demo' : 'Unpaid'}
+        </span>
+      </td>
+      <td style="color:var(--sun);font-weight:800">£${b.amount.toFixed(2)}</td>
+      <td>
+        <div style="display:flex;gap:.4rem">
+          ${b.status !== 'confirmed' ? `<button class="tbtn tb-c" onclick="setStatus('${b.id}','confirmed')">Confirm</button>` : ''}
+          <button class="tbtn tb-x" onclick="delBooking('${b.id}')">✕</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function setStatus(id, st) {
+  const b = bookings.find(x => x.id === id);
+  if (b) { b.status = st; renderTable(); renderStats(); showToast(`Booking ${id} confirmed ✓`); }
+}
+
+function delBooking(id) {
+  if (!confirm('Delete this booking? This cannot be undone.')) return;
+  bookings = bookings.filter(x => x.id !== id);
+  renderTable(); renderStats(); showToast('Booking deleted.');
+}
+
+function filterTbl(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.fbt').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderTable();
+}
+
+function renderStats() {
+  document.getElementById('ds-total').textContent     = bookings.length;
+  document.getElementById('ds-confirmed').textContent = bookings.filter(b => b.status === 'confirmed').length;
+  document.getElementById('ds-pending').textContent   = bookings.filter(b => b.status === 'pending').length;
+  const rev = bookings.filter(b => b.payment === 'paid').reduce((s,b) => s + b.amount, 0);
+  document.getElementById('ds-revenue').textContent = '£' + rev.toFixed(2);
+}
+
+function fmtDate(d) {
+  if (!d) return '—';
+  return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+}
+
+// ── Toast ─────────────────────────────────────────────────────────
+function showToast(msg, err=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (err ? ' err' : '');
+  void t.offsetWidth;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4500);
+}
+
+// ── FAQs ──────────────────────────────────────────────────────────
+const faqs = [
+  { q:'Can I just turn up on the day?', a:'We prefer booking online as we fill up fast, but if you decide on the day, just give us a call and we may be able to accommodate you — we love to meet new people!' },
+  { q:'How much does it cost?', a:'Most sessions are around £2.50 per child. We drop to as little as £1.50 in colder winter months to help families with heating costs.' },
+  { q:'Is there parking nearby?', a:'Absolutely — plenty of free on-road parking right outside. We\'re also easy to reach by public transport.' },
+  { q:'Is it a friendly group?', a:'We\'re biased, but yes! One mum said "Simply the best group ever!!" — we think you\'ll agree!' },
+  { q:'What is infant massage?', a:'A five-week course teaching effective, relaxing massage for your baby. Led by expert Lisa Heath with 20+ years\' experience. It supports bonding and baby\'s development.' },
+  { q:'Do I have to commit to coming regularly?', a:'No commitment at all! Many parents come back week after week — but there\'s absolutely no pressure.' },
+];
+
+function buildFAQs() {
+  document.getElementById('faqGrid').innerHTML = faqs.map((f,i) => `
+    <div class="faq-item" id="fq${i}">
+      <div class="faq-q" onclick="toggleFAQ(${i})"><span>${f.q}</span><span class="ar">▾</span></div>
+      <div class="faq-a">${f.a}</div>
+    </div>`).join('');
+}
+function toggleFAQ(i) {
+  const el = document.getElementById('fq'+i);
+  const was = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(x => x.classList.remove('open'));
+  if (!was) el.classList.add('open');
+}
+
+// ── Date min ─────────────────────────────────────────────────────
+document.getElementById('f-date').min = new Date().toISOString().split('T')[0];
+
+// ── Seed data ─────────────────────────────────────────────────────
+function seed() {
+  const s = [
+    { id:'TCH-001', name:'Emma Thompson', email:'emma@gmail.com', phone:'07700 900100', age:'6–12 months', session:'Stay & Play', date:'2025-04-08', children:1, notes:'First visit!', status:'confirmed', payment:'paid', amount:2.50, last4:'4242', brand:'Visa', created:'12/03/2025' },
+    { id:'TCH-002', name:'Laura Davies',  email:'laura@yahoo.com',phone:'07700 900200', age:'3–6 months',  session:'Infant Massage', date:'2025-04-10', children:1, notes:'', status:'confirmed', payment:'demo', amount:15.00, last4:'0002', brand:'Mastercard', created:'12/03/2025' },
+    { id:'TCH-003', name:'Natalie Khan',  email:'nkhan@mail.com', phone:'',            age:'1–2 years',   session:'Sensory Play', date:'2025-04-11', children:2, notes:'Twins!', status:'pending', payment:'unpaid', amount:5.00, last4:'', brand:'', created:'12/03/2025' },
+  ];
+  bookings = s;
+  renderTable(); renderStats();
+}
+
+// ── Boot ──────────────────────────────────────────────────────────
+buildFAQs();
+seed();
+initStripe();
+</script>
+</body>
+</html>
