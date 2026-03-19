@@ -858,7 +858,13 @@ function handlePay() {
   if (!name || !email || !date) { showToast('Please fill in your name, email and date.', 'err'); return; }
   const s = CONFIG.sessions[selectedSession];
   const total = s.flat ? s.price : s.price * qty;
-  const ref   = 'TCH-' + String(bookings.length + 1).padStart(3,'0');
+  // Human-readable ref: SURNAME-DDMM e.g. SMITH-0804 — matches easily in SumUp dashboard
+  const nameParts = name.trim().split(' ');
+  const surname = (nameParts.length > 1 ? nameParts[nameParts.length - 1] : nameParts[0]).toUpperCase().replace(/[^A-Z]/g, '').slice(0, 8);
+  const dateObj = date ? new Date(date + 'T00:00:00') : new Date();
+  const dd = String(dateObj.getDate()).padStart(2, '0');
+  const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+  const ref = surname + '-' + dd + mm;
   const isDemo = s.sumupLink.includes('REPLACE_ME');
 
   // Save full booking to admin list
@@ -877,7 +883,12 @@ function handlePay() {
     ? 'Open the Admin panel → Sessions tab → paste your SumUp link for "' + s.name + '" then download and upload the site.'
     : "You'll be taken to SumUp to pay securely. Once done, SumUp will bring you straight back to your booking confirmation!";
   document.getElementById('mdetail').innerHTML =
-    '<div class="mrow"><span class="k">Ref</span><span class="v">' + ref + '</span></div>' +
+    '<div style="background:linear-gradient(135deg,#D9FBF1,#E0F6FD);border:2px solid #06D6A0;border-radius:10px;padding:.9rem 1.1rem;margin-bottom:.9rem;text-align:center">'
+    + '<div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#059a73;margin-bottom:.3rem">Your Booking Reference</div>'
+    + '<div style="font-family:monospace;font-size:1.6rem;font-weight:900;color:#2D2926;letter-spacing:.08em">' + ref + '</div>'
+    + '<div style="font-size:.72rem;color:#6B5E54;font-weight:700;margin-top:.3rem">📋 Note this down — quote it if you contact us</div>'
+    + '</div>'
+    + '<div class="mrow"><span class="k">Name</span><span class="v">' + name + '</span></div>' +
     '<div class="mrow"><span class="k">Session</span><span class="v">' + s.name + '</span></div>' +
     '<div class="mrow"><span class="k">Date</span><span class="v">' + fmtDate(date) + '</span></div>' +
     '<div class="mrow"><span class="k">Children</span><span class="v">' + qty + '</span></div>' +

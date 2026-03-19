@@ -294,7 +294,9 @@ const booking = JSON.parse(localStorage.getItem('chh_pending_booking') || 'null'
 
 if (booking) {
   // Populate the card
-  document.getElementById('bcRef').textContent      = booking.ref || '—';
+  const refEl = document.getElementById('bcRef');
+  refEl.textContent = booking.ref || '—';
+  refEl.style.cssText = 'font-family:monospace;font-size:1.25rem;font-weight:900;color:#2D2926;letter-spacing:.06em;background:#D9FBF1;padding:.25rem .6rem;border-radius:8px;border:2px solid #06D6A0';
   document.getElementById('bcName').textContent     = booking.name || '—';
   document.getElementById('bcSession').textContent  = booking.session || '—';
   document.getElementById('bcDate').textContent     = fmtDate(booking.date);
