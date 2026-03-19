@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Corner House Hub — Birkenhead Baby & Toddler Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --coral:#FF6B6B;--coral-d:#e85555;--coral-l:#FFE8E8;
+  --sun:#FFD166;--sun-l:#FFF5D6;
+  --mint:#06D6A0;--mint-l:#D9FBF1;
+  --sky:#4CC9F0;--sky-l:#E0F6FD;
+  --lilac:#9B5DE5;--lilac-l:#EFE4FD;
+  --peach:#FF9F6B;
+  --cream:#FFFDF8;--warm:#FFF8EE;
+  --text:#2D2926;--mid:#6B5E54;--soft:#A8978C;
+  --border:#F0E8DC;
+  --r:18px;--rsm:10px;
+  --sh:0 2px 12px rgba(0,0,0,.07);
+  --shm:0 8px 30px rgba(0,0,0,.10);
+  --shl:0 20px 60px rgba(0,0,0,.13);
+  /* Admin colours */
+  --adark:#0F172A;--amid:#1E293B;--alight:#334155;
+  --aborder:#334155;--atext:#E2E8F0;--asoft:#94A3B8;
+  --agreen:#10B981;--ared:#EF4444;--ayellow:#F59E0B;
+  --ablue:#3B82F6;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;line-height:1.6}
+
+/* ── PUBLIC SITE ──────────────────────────────────── */
+.topbar{background:var(--coral);color:#fff;text-align:center;padding:.55rem 1rem;font-size:.82rem;font-weight:700}
+.topbar a{color:#fff}
+nav{position:sticky;top:0;z-index:100;background:#fff;box-shadow:var(--sh);padding:.9rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.logo-icon{width:46px;height:46px;background:linear-gradient(135deg,var(--coral),var(--sun));border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.45rem;box-shadow:0 4px 12px rgba(255,107,107,.3)}
+.l1{font-family:'Baloo 2',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);display:block}
+.l2{font-size:.68rem;font-weight:700;color:var(--soft);letter-spacing:.07em;text-transform:uppercase;display:block}
+.nav-links{display:flex;align-items:center;gap:.25rem;flex-wrap:wrap}
+.nav-links a{font-weight:700;font-size:.87rem;color:var(--mid);text-decoration:none;padding:.45rem .9rem;border-radius:50px;transition:all .2s}
+.nav-links a:hover{background:var(--warm);color:var(--coral)}
+.nav-cta{background:var(--coral)!important;color:#fff!important;box-shadow:0 4px 14px rgba(255,107,107,.35)}
+.nav-cta:hover{background:var(--coral-d)!important;transform:translateY(-1px)}
+#hero{background:linear-gradient(145deg,#FFF8EE,#FFF0E8 45%,#E8F8FF);padding:4rem 2.5rem 3rem;position:relative;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(65px);opacity:.22;pointer-events:none}
+.b1{width:420px;height:420px;background:var(--sun);top:-100px;right:-80px}
+.b2{width:300px;height:300px;background:var(--coral);bottom:-60px;left:-60px}
+.hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+.award{display:inline-flex;align-items:center;gap:.5rem;background:var(--sun-l);border:2px solid var(--sun);border-radius:50px;padding:.4rem 1rem;font-size:.78rem;font-weight:800;color:#7A5A00;margin-bottom:1.2rem}
+h1{font-family:'Baloo 2',sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:800;line-height:1.15;color:var(--text);margin-bottom:1rem}
+h1 em{font-style:normal;color:var(--coral)}
+.hero-sub{font-size:1.05rem;color:var(--mid);line-height:1.7;margin-bottom:2rem;max-width:480px}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:.92rem;text-decoration:none;border:none;cursor:pointer;transition:all .22s;border-radius:50px;padding:.75rem 1.6rem}
+.btn-coral{background:var(--coral);color:#fff;box-shadow:0 4px 16px rgba(255,107,107,.4)}
+.btn-coral:hover{background:var(--coral-d);transform:translateY(-2px)}
+.btn-outline{background:#fff;color:var(--coral);border:2px solid var(--coral)}
+.btn-outline:hover{background:var(--coral-l);transform:translateY(-2px)}
+.hero-chips{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+.chip{display:inline-flex;align-items:center;gap:.45rem;background:#fff;border-radius:50px;padding:.48rem 1rem;font-size:.8rem;font-weight:700;color:var(--mid);box-shadow:var(--sh)}
+.act-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.act-card{background:#fff;border-radius:var(--r);padding:1.4rem 1.2rem;box-shadow:var(--shm);transition:transform .3s;text-align:center}
+.act-card:hover{transform:translateY(-4px)}
+.act-card:nth-child(2){margin-top:1.5rem}
+.act-card:nth-child(4){margin-top:-1.5rem}
+.act-icon{font-size:2.4rem;margin-bottom:.6rem;display:block}
+.act-card h4{font-family:'Baloo 2',sans-serif;font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.act-card p{font-size:.74rem;color:var(--soft);line-height:1.4}
+.act-price{display:inline-block;margin-top:.6rem;background:var(--warm);color:var(--coral);font-weight:800;font-size:.78rem;padding:.22rem .65rem;border-radius:50px}
+section{padding:5rem 2.5rem}
+.si{max-width:1100px;margin:0 auto}
+.stag{display:inline-block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:.3rem .9rem;border-radius:50px;margin-bottom:.8rem}
+.t-coral{background:var(--coral-l);color:var(--coral)}.t-mint{background:var(--mint-l);color:#059a73}
+.t-sky{background:var(--sky-l);color:#0090bb}
+h2{font-family:'Baloo 2',sans-serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:.8rem}
+h2 em{font-style:normal;color:var(--coral)}
+.ssub{font-size:1rem;color:var(--mid);line-height:1.7;max-width:560px;margin-bottom:2.5rem}
+#about{background:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-main{background:linear-gradient(135deg,var(--coral-l),var(--sun-l));border-radius:var(--r);height:360px;display:flex;align-items:center;justify-content:center;font-size:6rem;box-shadow:var(--shm);position:relative}
+.float-badge{position:absolute;background:#fff;border-radius:var(--rsm);padding:.8rem 1rem;box-shadow:var(--shm);font-weight:700;font-size:.8rem}
+.f1{top:-14px;right:-14px;color:var(--coral)}
+.f2{bottom:20px;left:-22px;display:flex;align-items:center;gap:.5rem}
+.f2 .big{font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:800;color:var(--mint)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.fact{background:var(--warm);border-radius:var(--rsm);padding:1rem 1.1rem;border-left:4px solid var(--coral)}
+.fact:nth-child(2){border-left-color:var(--mint)}.fact:nth-child(3){border-left-color:var(--sun)}.fact:nth-child(4){border-left-color:var(--sky)}
+.fact .fn{font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:800;line-height:1}
+.fact .fl{font-size:.73rem;font-weight:600;color:var(--soft);margin-top:.2rem}
+.charity-note{display:flex;align-items:center;gap:.6rem;background:var(--lilac-l);border-radius:var(--rsm);padding:.8rem 1.1rem;font-size:.82rem;font-weight:700;color:var(--lilac)}
+#activities{background:var(--warm)}
+.acts-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+.acts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.3rem}
+.acard{background:#fff;border-radius:var(--r);padding:2rem 1.8rem;box-shadow:var(--sh);transition:all .28s;position:relative;overflow:hidden}
+.acard:hover{transform:translateY(-5px);box-shadow:var(--shl)}
+.acard-stripe{position:absolute;top:0;left:0;right:0;height:5px}
+.acard-price{position:absolute;top:1.1rem;right:1.1rem;border-radius:50px;padding:.25rem .65rem;font-size:.73rem;font-weight:800;color:#fff}
+.acard-icon{font-size:2.6rem;margin-bottom:.9rem;display:block}
+.acard h3{font-family:'Baloo 2',sans-serif;font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
+.acard p{font-size:.87rem;color:var(--mid);line-height:1.6;margin-bottom:1.1rem}
+.ameta{display:flex;flex-wrap:wrap;gap:.45rem}
+.amchip{font-size:.7rem;font-weight:700;padding:.26rem .65rem;border-radius:50px;background:var(--warm);color:var(--mid)}
+#booking{background:#fff}
+.booking-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start}
+.why-list{display:flex;flex-direction:column;gap:.85rem;margin-bottom:2rem}
+.why-item{display:flex;align-items:flex-start;gap:.85rem;background:var(--warm);border-radius:var(--rsm);padding:1rem 1.1rem}
+.wi{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.wi-c{background:var(--coral-l)}.wi-m{background:var(--mint-l)}.wi-s{background:var(--sun-l)}.wi-k{background:var(--sky-l)}
+.why-item strong{display:block;font-size:.9rem;color:var(--text);margin-bottom:.12rem}
+.why-item span{font-size:.8rem;color:var(--soft)}
+.contact-card{background:linear-gradient(135deg,var(--coral),var(--peach));border-radius:var(--r);padding:1.5rem 1.8rem;color:#fff}
+.contact-card h4{font-family:'Baloo 2',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem}
+.ci{display:flex;align-items:center;gap:.65rem;margin-bottom:.6rem;font-size:.88rem;font-weight:700}
+.ci a{color:#fff;text-decoration:none}.ci a:hover{text-decoration:underline}
+.form-card{background:var(--warm);border-radius:var(--r);padding:2.2rem;border:2px solid var(--border);box-shadow:var(--sh)}
+.ftitle{font-family:'Baloo 2',sans-serif;font-size:1.35rem;font-weight:800;color:var(--text);margin-bottom:.25rem}
+.fsub{font-size:.82rem;color:var(--soft);margin-bottom:1.5rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.76rem;font-weight:800;color:var(--mid);letter-spacing:.04em;margin-bottom:.38rem}
+.field input,.field select,.field textarea{width:100%;padding:.72rem 1rem;border:2px solid var(--border);background:#fff;border-radius:var(--rsm);font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:600;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--coral);box-shadow:0 0 0 3px rgba(255,107,107,.13)}
+.field textarea{resize:vertical;min-height:70px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.session-cards{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem}
+.scard{background:#fff;border:2px solid var(--border);border-radius:var(--rsm);padding:.85rem 1rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.85rem}
+.scard:hover{border-color:var(--coral);background:var(--coral-l)}
+.scard.selected{border-color:var(--coral);background:var(--coral-l);box-shadow:0 0 0 3px rgba(255,107,107,.12)}
+.scard-name{font-weight:800;font-size:.88rem;color:var(--text)}
+.scard-days{font-size:.72rem;color:var(--soft);margin-top:.1rem}
+.scard-price{font-family:'Baloo 2',sans-serif;font-weight:800;color:var(--coral);font-size:.95rem;flex-shrink:0;margin-left:auto}
+.scard-check{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;transition:all .2s;margin-left:.5rem}
+.scard.selected .scard-check{background:var(--coral);border-color:var(--coral);color:#fff}
+.price-box{background:#fff;border-radius:var(--rsm);border:2px solid var(--border);padding:1.1rem 1.2rem;margin:1rem 0}
+.price-box-title{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--soft);margin-bottom:.8rem}
+.prow{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;padding:.4rem 0;border-bottom:1px solid var(--border);color:var(--mid)}
+.prow:last-child{border-bottom:none}
+.prow.total{font-weight:800;font-size:1rem;color:var(--text);padding-top:.6rem;border-top:2px solid var(--border);border-bottom:none;margin-top:.2rem}
+.prow.total .pval{color:var(--coral);font-size:1.15rem}
+.pempty{color:var(--soft);font-size:.82rem;text-align:center;padding:.5rem 0}
+.pay-btn{width:100%;margin-top:1rem;background:linear-gradient(135deg,#00a651,#00c96a);color:#fff;padding:1rem;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;border:none;border-radius:50px;cursor:pointer;transition:all .25s;box-shadow:0 6px 20px rgba(0,166,81,.35);display:flex;align-items:center;justify-content:center;gap:.6rem}
+.pay-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,166,81,.45)}
+.pay-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.sumup-note{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.7rem;font-size:.7rem;font-weight:700;color:var(--soft)}
+.sumup-badge{background:#00a651;color:#fff;font-size:.58rem;font-weight:800;padding:.15rem .45rem;border-radius:4px}
+#faq{background:var(--warm)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
+.faq-item{background:#fff;border-radius:var(--rsm);overflow:hidden;box-shadow:var(--sh)}
+.faq-q{padding:1.1rem 1.3rem;font-weight:800;font-size:.9rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;color:var(--text);user-select:none}
+.faq-q .ar{width:26px;height:26px;background:var(--warm);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0;transition:transform .25s,background .2s}
+.faq-item.open .faq-q .ar{transform:rotate(180deg);background:var(--coral-l);color:var(--coral)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s;font-size:.87rem;color:var(--mid);line-height:1.65;padding:0 1.3rem}
+.faq-item.open .faq-a{max-height:200px;padding:0 1.3rem 1.2rem}
+footer{background:var(--text);color:rgba(255,255,255,.7);padding:3.5rem 2.5rem 2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.fb p{font-size:.82rem;line-height:1.7;margin-top:1rem;color:rgba(255,255,255,.45);max-width:270px}
+.fc h4{font-family:'Baloo 2',sans-serif;font-size:.88rem;font-weight:700;color:#fff;margin-bottom:1rem}
+.fc a,.fc p{display:block;font-size:.82rem;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:.55rem;line-height:1.5;transition:color .2s}
+.fc a:hover{color:var(--sun)}
+.soc-row{display:flex;gap:.6rem;margin-top:.6rem}
+.soc{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.88rem;text-decoration:none!important;transition:all .2s}
+.soc-fb{background:rgba(24,119,242,.18);color:#6AAFF7!important}
+.soc-ig{background:rgba(225,48,108,.18);color:#F7869B!important}
+.soc-fb:hover{background:rgba(24,119,242,.35)}
+.soc-ig:hover{background:rgba(225,48,108,.35)}
+.foot-bot{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);font-size:.76rem;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:.5rem}
+
+/* ── BOOKING MODAL ─────────────────────────────────── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.mbox{background:#fff;border-radius:var(--r);padding:2.5rem;max-width:460px;width:100%;box-shadow:var(--shl);transform:scale(.95) translateY(20px);transition:transform .3s;text-align:center}
+.overlay.open .mbox{transform:scale(1) translateY(0)}
+.memo{font-size:3.5rem;margin-bottom:1rem;display:block}
+.mbox h3{font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:800;color:var(--text);margin-bottom:.35rem}
+.mbox>p{font-size:.9rem;color:var(--mid);margin-bottom:1.5rem;line-height:1.65}
+.mref{background:var(--warm);border-radius:var(--rsm);padding:1.2rem;margin-bottom:1.5rem;text-align:left}
+.mrow{display:flex;justify-content:space-between;padding:.42rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.mrow:last-child{border-bottom:none}
+.mrow .k{color:var(--soft);font-size:.73rem;text-transform:uppercase;letter-spacing:.06em}
+.mrow .v{font-weight:700;color:var(--text)}
+.mrow .g{color:#00a651;font-weight:800}
+.mclose{background:#00a651;color:#fff;border:none;cursor:pointer;padding:.75rem 2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:800;transition:all .2s;width:100%}
+.mclose:hover{background:#009244}
+
+/* ── TOAST ─────────────────────────────────────────── */
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:#1E293B;color:#fff;padding:.9rem 1.4rem;border-radius:var(--rsm);border-left:5px solid var(--mint);box-shadow:var(--shl);font-size:.87rem;font-weight:700;max-width:320px;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.err{border-left-color:var(--coral)}
+.toast.warn{border-left-color:var(--sun)}
+
+/* ── ADMIN PANEL ───────────────────────────────────── */
+#adminPanel{display:none;position:fixed;inset:0;background:var(--adark);z-index:500;overflow:auto;font-family:'Nunito',sans-serif}
+#adminPanel.open{display:block}
+
+/* Login screen */
+.admin-login{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem}
+.login-card{background:var(--amid);border:1px solid var(--aborder);border-radius:var(--r);padding:3rem 2.5rem;max-width:380px;width:100%;text-align:center}
+.login-logo{font-size:3rem;margin-bottom:1rem;display:block}
+.login-card h2{font-family:'Baloo 2',sans-serif;font-size:1.6rem;font-weight:800;color:var(--atext);margin-bottom:.3rem}
+.login-card p{font-size:.85rem;color:var(--asoft);margin-bottom:2rem}
+.login-field{margin-bottom:1rem;text-align:left}
+.login-field label{display:block;font-size:.75rem;font-weight:800;color:var(--asoft);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.login-field input{width:100%;padding:.8rem 1rem;background:var(--alight);border:1px solid var(--aborder);border-radius:var(--rsm);color:var(--atext);font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:600;outline:none;transition:border-color .2s}
+.login-field input:focus{border-color:var(--ablue)}
+.login-btn{width:100%;background:var(--ablue);color:#fff;border:none;padding:.85rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;transition:all .2s;margin-top:.5rem}
+.login-btn:hover{background:#2563EB;transform:translateY(-1px)}
+.login-err{color:var(--ared);font-size:.82rem;font-weight:700;margin-top:.8rem;display:none}
+
+/* Admin shell */
+.admin-shell{display:none;height:100vh;flex-direction:column}
+.admin-shell.visible{display:flex}
+.admin-topbar{background:var(--amid);border-bottom:1px solid var(--aborder);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.admin-topbar-left{display:flex;align-items:center;gap:1rem}
+.admin-brand{font-family:'Baloo 2',sans-serif;font-size:1.1rem;font-weight:800;color:var(--atext)}
+.admin-brand span{color:var(--ablue)}
+.admin-badge{background:var(--ablue);color:#fff;font-size:.65rem;font-weight:800;padding:.2rem .55rem;border-radius:4px;letter-spacing:.06em;text-transform:uppercase}
+.admin-topbar-right{display:flex;align-items:center;gap:.8rem}
+.admin-exit-btn{background:transparent;border:1px solid var(--aborder);color:var(--asoft);padding:.45rem 1rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s}
+.admin-exit-btn:hover{border-color:var(--ared);color:var(--ared)}
+
+/* Tabs */
+.admin-tabs{background:var(--amid);border-bottom:1px solid var(--aborder);padding:0 2rem;display:flex;gap:.25rem;flex-shrink:0}
+.atab{padding:.85rem 1.3rem;font-size:.85rem;font-weight:700;color:var(--asoft);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;user-select:none;display:flex;align-items:center;gap:.5rem}
+.atab:hover{color:var(--atext)}
+.atab.active{color:var(--ablue);border-bottom-color:var(--ablue)}
+
+/* Admin body */
+.admin-body{flex:1;overflow:auto;padding:2rem}
+.admin-tab-content{display:none;max-width:900px;margin:0 auto}
+.admin-tab-content.active{display:block}
+
+/* Admin cards */
+.acard-edit{background:var(--amid);border:1px solid var(--aborder);border-radius:var(--r);padding:1.8rem;margin-bottom:1.5rem}
+.acard-edit h3{font-family:'Baloo 2',sans-serif;font-size:1.1rem;font-weight:800;color:var(--atext);margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem}
+.afield{margin-bottom:1rem}
+.afield label{display:block;font-size:.72rem;font-weight:800;color:var(--asoft);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.afield input,.afield textarea,.afield select{width:100%;padding:.7rem 1rem;background:var(--alight);border:1px solid var(--aborder);border-radius:var(--rsm);color:var(--atext);font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:600;outline:none;transition:border-color .2s}
+.afield input:focus,.afield textarea:focus,.afield select:focus{border-color:var(--ablue)}
+.afield textarea{resize:vertical;min-height:80px}
+.arow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.arow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+
+/* Session editor */
+.session-edit-list{display:flex;flex-direction:column;gap:1rem}
+.session-edit-item{background:var(--alight);border:1px solid var(--aborder);border-radius:var(--rsm);padding:1.2rem}
+.session-edit-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.session-edit-header span{font-weight:800;color:var(--atext);font-size:.95rem}
+.session-color-strip{width:18px;height:18px;border-radius:4px;display:inline-block;margin-right:.5rem;vertical-align:middle}
+.del-session-btn{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:var(--ared);padding:.3rem .65rem;border-radius:6px;font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s}
+.del-session-btn:hover{background:rgba(239,68,68,.3)}
+
+/* FAQ editor */
+.faq-edit-list{display:flex;flex-direction:column;gap:1rem}
+.faq-edit-item{background:var(--alight);border:1px solid var(--aborder);border-radius:var(--rsm);padding:1.2rem;position:relative}
+
+/* Buttons */
+.abtn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;transition:all .2s;border:none}
+.abtn-blue{background:var(--ablue);color:#fff}
+.abtn-blue:hover{background:#2563EB;transform:translateY(-1px)}
+.abtn-green{background:var(--agreen);color:#fff}
+.abtn-green:hover{background:#059669;transform:translateY(-1px)}
+.abtn-ghost{background:transparent;border:1px solid var(--aborder);color:var(--asoft)}
+.abtn-ghost:hover{border-color:var(--atext);color:var(--atext)}
+.abtn-red{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:var(--ared)}
+.abtn-red:hover{background:rgba(239,68,68,.3)}
+
+/* Download banner */
+.download-banner{background:linear-gradient(135deg,#1D4ED8,#7C3AED);border-radius:var(--r);padding:1.5rem 2rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.download-banner h3{font-family:'Baloo 2',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:.25rem}
+.download-banner p{font-size:.82rem;color:rgba(255,255,255,.75)}
+.download-big-btn{background:#fff;color:#1D4ED8;padding:.75rem 1.8rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;border:none;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.download-big-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+
+/* Booking management */
+.bm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+.bm-stat{background:var(--amid);border:1px solid var(--aborder);border-radius:var(--rsm);padding:1.2rem 1.5rem}
+.bm-stat .n{font-family:'Baloo 2',sans-serif;font-size:1.9rem;font-weight:800;color:var(--sun);line-height:1}
+.bm-stat .l{font-size:.68rem;font-weight:600;color:var(--asoft);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
+.flt-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.fbt{font-family:'Nunito',sans-serif;font-size:.76rem;font-weight:700;padding:.42rem .95rem;border-radius:50px;border:1px solid var(--aborder);background:transparent;color:var(--asoft);cursor:pointer;transition:all .2s}
+.fbt.on,.fbt:hover{background:var(--sun);border-color:var(--sun);color:#1A1410}
+.bm-table-wrap{overflow-x:auto;border-radius:var(--rsm);border:1px solid var(--aborder)}
+table{width:100%;border-collapse:collapse;font-size:.83rem;min-width:700px}
+thead th{background:var(--alight);padding:.75rem 1rem;text-align:left;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--asoft)}
+tbody tr{border-bottom:1px solid var(--aborder);transition:background .15s}
+tbody tr:hover{background:rgba(255,255,255,.03)}
+tbody td{padding:.85rem 1rem;color:var(--atext);vertical-align:middle}
+.pill{display:inline-block;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;padding:.26rem .65rem;border-radius:50px}
+.p-pending{background:rgba(245,158,11,.18);color:var(--ayellow)}
+.p-confirmed{background:rgba(16,185,129,.18);color:var(--agreen)}
+.p-cancelled{background:rgba(239,68,68,.18);color:var(--ared)}
+.ppill{display:inline-block;font-size:.64rem;font-weight:800;text-transform:uppercase;padding:.22rem .6rem;border-radius:50px}
+.pp-paid{background:rgba(0,166,81,.2);color:#00c96a;border:1px solid rgba(0,166,81,.3)}
+.pp-wait{background:rgba(245,158,11,.15);color:var(--ayellow);border:1px solid rgba(245,158,11,.3)}
+.tbtn{font-family:'Nunito',sans-serif;font-size:.68rem;font-weight:700;padding:.28rem .62rem;border-radius:6px;border:1px solid;cursor:pointer;transition:all .18s}
+.tb-g{border-color:rgba(16,185,129,.4);color:var(--agreen);background:rgba(16,185,129,.07)}
+.tb-g:hover{background:rgba(16,185,129,.22)}
+.tb-y{border-color:rgba(245,158,11,.4);color:var(--ayellow);background:rgba(245,158,11,.07)}
+.tb-y:hover{background:rgba(245,158,11,.2)}
+.tb-r{border-color:rgba(239,68,68,.3);color:rgba(239,68,68,.7);background:transparent}
+.tb-r:hover{color:var(--ared);border-color:var(--ared)}
+.empty-row{text-align:center;padding:3rem;color:var(--asoft);font-size:.88rem}
+.bm-note{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);border-radius:var(--rsm);padding:.9rem 1.2rem;margin-bottom:1.2rem;font-size:.82rem;color:#93C5FD;font-weight:600}
+
+/* Password change */
+.pw-section{background:var(--amid);border:1px solid var(--aborder);border-radius:var(--r);padding:1.8rem;margin-bottom:1.5rem}
+.pw-section h3{font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;color:var(--atext);margin-bottom:1rem}
+
+/* Responsive */
+@media(max-width:900px){
+  nav{padding:.8rem 1.2rem}.nav-links{display:none}
+  .hero-inner,.about-grid,.booking-grid{grid-template-columns:1fr}
+  .act-card:nth-child(2),.act-card:nth-child(4){margin-top:0}
+  .bm-stats{grid-template-columns:1fr 1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  section{padding:3.5rem 1.2rem}
+  .arow,.arow3{grid-template-columns:1fr}
+  .admin-tabs{overflow-x:auto}
+}
+@media(max-width:560px){.footer-inner{grid-template-columns:1fr;gap:1.5rem}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:fadeUp .55s ease both}
+.hero-inner>*:nth-child(1){animation-delay:.1s}
+.hero-inner>*:nth-child(2){animation-delay:.25s}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     PUBLIC WEBSITE
+     ═══════════════════════════════════════════════════════ -->
+<div id="publicSite">
+
+<div class="topbar" id="topbarEl"></div>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">🏠</div>
+    <div><span class="l1">The Corner House</span><span class="l2" id="navSubtitle"></span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a><a href="#activities">Activities</a>
+    <a href="#faq">FAQs</a>
+    <a href="#booking" class="nav-cta">Book &amp; Pay</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="award">🏆 Wirral's Best for Kids 2024 — Wirral Globe</div>
+      <h1 id="heroTitle"></h1>
+      <p class="hero-sub" id="heroSub"></p>
+      <div class="hero-btns">
+        <a href="#booking" class="btn btn-coral">📅 Book &amp; Pay</a>
+        <a href="#activities" class="btn btn-outline">See Activities</a>
+      </div>
+      <div class="hero-chips" id="heroChips"></div>
+    </div>
+    <div><div class="act-grid" id="heroActGrid"></div></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="si"><div class="about-grid">
+    <div style="position:relative">
+      <div class="about-main">🏡</div>
+      <div class="float-badge f1">🏆 Best in Wirral 2024</div>
+      <div class="float-badge f2"><span class="big">500+</span><div><div style="font-size:.7rem;color:var(--soft);font-weight:700">Happy families</div></div></div>
+    </div>
+    <div>
+      <div class="stag t-coral">Our Story</div>
+      <h2 id="aboutTitle"></h2>
+      <p class="ssub" id="aboutBody"></p>
+      <div class="facts" id="aboutFacts"></div>
+      <div class="charity-note" id="charityNote"></div>
+    </div>
+  </div></div>
+</section>
+
+<section id="activities">
+  <div class="si">
+    <div class="acts-hd">
+      <div><div class="stag t-mint">What We Offer</div><h2>Activities for every little one</h2></div>
+      <a href="#booking" class="btn btn-coral">Book &amp; Pay Now</a>
+    </div>
+    <div class="acts-grid" id="activitiesGrid"></div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="si"><div class="booking-grid">
+    <div>
+      <div class="stag t-coral">Reserve &amp; Pay</div>
+      <h2>Book &amp; pay <em>securely</em> online</h2>
+      <p class="ssub">Choose your session, fill in your details, then pay securely through SumUp. Your place is confirmed the moment payment goes through.</p>
+      <div class="why-list">
+        <div class="why-item"><div class="wi wi-c">✅</div><div><strong>Instant Confirmation</strong><span>SumUp sends a receipt automatically once paid.</span></div></div>
+        <div class="why-item"><div class="wi wi-m">💷</div><div><strong>Affordable Sessions</strong><span id="whyPrice">From £2.50 per child — lower in winter months.</span></div></div>
+        <div class="why-item"><div class="wi wi-s">🔒</div><div><strong>Secure SumUp Checkout</strong><span>Trusted by millions of UK businesses.</span></div></div>
+        <div class="why-item"><div class="wi wi-k">📞</div><div><strong>Prefer to Call?</strong><span id="whyPhone">Ring us on 0151 245 6949 or message on Facebook.</span></div></div>
+      </div>
+      <div class="contact-card">
+        <h4>Get in touch</h4>
+        <div class="ci">📍 <span id="contactAddr"></span></div>
+        <div class="ci">📞 <a id="contactPhone" href="#"></a></div>
+        <div class="ci">💻 <a id="contactFB" href="#" target="_blank">Facebook</a> &nbsp;·&nbsp; <a id="contactIG" href="#" target="_blank">Instagram</a></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="ftitle">📅 Book &amp; Pay</div>
+      <p class="fsub">Choose your session, fill in your details, then click Pay with SumUp.</p>
+      <div class="field"><label>Choose a Session *</label><div class="session-cards" id="bookingSessionCards"></div></div>
+      <div class="field"><label>Your Name *</label><input type="text" id="f-name" placeholder="e.g. Sarah Smith"></div>
+      <div class="frow">
+        <div class="field"><label>Email *</label><input type="email" id="f-email" placeholder="your@email.com"></div>
+        <div class="field"><label>Phone</label><input type="tel" id="f-phone" placeholder="07xxx xxxxxx"></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Preferred Date *</label><input type="date" id="f-date"></div>
+        <div class="field"><label>No. of Children</label><input type="number" id="f-children" value="1" min="1" max="5" onchange="updatePrice()"></div>
+      </div>
+      <div class="field"><label>Child's Age</label>
+        <select id="f-age">
+          <option value="">Select age range...</option>
+          <option>Newborn (0–3 months)</option><option>3–6 months</option>
+          <option>6–12 months</option><option>1–2 years</option>
+          <option>2–3 years</option><option>3–5 years</option>
+        </select>
+      </div>
+      <div class="field"><label>Notes (optional)</label><textarea id="f-notes" placeholder="Any special requirements or questions..."></textarea></div>
+      <div class="price-box">
+        <div class="price-box-title">💷 Payment Summary</div>
+        <div class="pempty" id="pempty">Select a session above to see pricing</div>
+        <div id="prows" style="display:none">
+          <div class="prow"><span id="ps-session">—</span><span id="ps-unit">£0.00</span></div>
+          <div class="prow"><span>Children</span><span id="ps-qty">× 1</span></div>
+          <div class="prow total"><span>Total due today</span><span class="pval" id="ps-total">£0.00</span></div>
+        </div>
+      </div>
+      <button class="pay-btn" id="payBtn" onclick="handlePay()" disabled>
+        <span id="payBtnText">Select a session to continue</span>
+      </button>
+      <div class="sumup-note"><span class="sumup-badge">SumUp</span> Secure checkout · No card details stored by us</div>
+    </div>
+  </div></div>
+</section>
+
+<section id="faq">
+  <div class="si">
+    <div class="stag t-sky">Common Questions</div>
+    <h2>Frequently asked questions</h2>
+    <p class="ssub">Everything you need to know before your first visit.</p>
+    <div class="faq-grid" id="faqGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="fb">
+      <div class="nav-logo">
+        <div class="logo-icon" style="width:40px;height:40px;font-size:1.2rem">🏠</div>
+        <div><span class="l1" style="color:#fff">The Corner House</span><span class="l2" style="color:rgba(255,255,255,.4)">Family &amp; Community Hub</span></div>
+      </div>
+      <p id="footerAbout"></p>
+      <div class="soc-row">
+        <a id="footFB" href="#" target="_blank" class="soc soc-fb">f</a>
+        <a id="footIG" href="#" target="_blank" class="soc soc-ig">📷</a>
+      </div>
+    </div>
+    <div class="fc"><h4>Quick Links</h4><a href="#about">About Us</a><a href="#activities">Our Activities</a><a href="#booking">Book a Session</a><a href="#faq">FAQs</a></div>
+    <div class="fc"><h4>Sessions</h4><div id="footerSessions"></div></div>
+    <div class="fc"><h4>Contact</h4><p id="footerAddr"></p><a id="footerPhone" href="#">—</a><a id="footerFBLink" href="#" target="_blank">Message on Facebook</a></div>
+  </div>
+  <div class="foot-bot">
+    <span id="footerCopy"></span>
+    <span>Registered Charity No. 1197336 · Formerly Bee Early Years CIO</span>
+  </div>
+</footer>
+
+</div><!-- end #publicSite -->
+
+<!-- Booking modal -->
+<div class="overlay" id="overlay" onclick="closeOverlay(event)">
+  <div class="mbox">
+    <span class="memo" id="memo">💳</span>
+    <h3 id="mtitle">One more step!</h3>
+    <p id="msub">You'll be taken to SumUp's secure checkout page.</p>
+    <div class="mref" id="mdetail"></div>
+    <button class="mclose" id="mcloseBtn">Continue</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     ADMIN PANEL
+     ═══════════════════════════════════════════════════════ -->
+<div id="adminPanel">
+
+  <!-- Login screen -->
+  <div class="admin-login" id="adminLogin">
+    <div class="login-card">
+      <span class="login-logo">🔐</span>
+      <h2>Admin Login</h2>
+      <p>The Corner House Hub · Website Manager</p>
+      <div class="login-field"><label>Password</label><input type="password" id="pwInput" placeholder="Enter your password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="login-btn" onclick="doLogin()">Log In</button>
+      <div class="login-err" id="loginErr">❌ Incorrect password. Please try again.</div>
+      <p style="margin-top:1.5rem;font-size:.75rem;color:var(--asoft)">Default password: <strong style="color:var(--atext)">cornerhouse2025</strong></p>
+    </div>
+  </div>
+
+  <!-- Admin shell (shown after login) -->
+  <div class="admin-shell" id="adminShell">
+    <div class="admin-topbar">
+      <div class="admin-topbar-left">
+        <span class="admin-brand">Corner House <span>Admin</span></span>
+        <span class="admin-badge">Website Manager</span>
+      </div>
+      <div class="admin-topbar-right">
+        <button class="admin-exit-btn" onclick="exitAdmin()">← Back to Website</button>
+      </div>
+    </div>
+    <div class="admin-tabs">
+      <div class="atab active" onclick="showTab('bookings',this)">📋 Bookings</div>
+      <div class="atab" onclick="showTab('sessions',this)">🧸 Sessions</div>
+      <div class="atab" onclick="showTab('contact',this)">📍 Contact &amp; About</div>
+      <div class="atab" onclick="showTab('faqs',this)">❓ FAQs</div>
+      <div class="atab" onclick="showTab('settings',this)">⚙️ Settings</div>
+    </div>
+    <div class="admin-body">
+
+      <!-- ── BOOKINGS TAB ── -->
+      <div class="admin-tab-content active" id="tab-bookings">
+        <div class="bm-note">💡 Bookings are saved on this device. When a customer pays through SumUp, mark them as <strong>Paid</strong> here to keep your records up to date.</div>
+        <div class="bm-stats">
+          <div class="bm-stat"><div class="n" id="as-total">0</div><div class="l">Total Bookings</div></div>
+          <div class="bm-stat"><div class="n" id="as-confirmed">0</div><div class="l">Confirmed</div></div>
+          <div class="bm-stat"><div class="n" id="as-pending">0</div><div class="l">Pending</div></div>
+          <div class="bm-stat"><div class="n" id="as-revenue">£0.00</div><div class="l">Revenue (Paid)</div></div>
+        </div>
+        <div class="flt-bar">
+          <button class="fbt on" onclick="filterTbl('all',this)">All</button>
+          <button class="fbt" onclick="filterTbl('pending',this)">Pending</button>
+          <button class="fbt" onclick="filterTbl('confirmed',this)">Confirmed</button>
+          <button class="fbt" onclick="filterTbl('cancelled',this)">Cancelled</button>
+        </div>
+        <div class="bm-table-wrap">
+          <table>
+            <thead><tr><th>Ref</th><th>Name &amp; Email</th><th>Session</th><th>Date</th><th>Kids</th><th>Status</th><th>Payment</th><th>Amount</th><th>Actions</th></tr></thead>
+            <tbody id="adminTBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── SESSIONS TAB ── -->
+      <div class="admin-tab-content" id="tab-sessions">
+        <div class="download-banner">
+          <div><h3>💾 Remember to save your changes!</h3><p>After editing sessions, click <strong>Download Updated Website</strong>, then upload the file to GitHub.</p></div>
+          <button class="download-big-btn" onclick="downloadSite()">⬇️ Download Updated Website</button>
+        </div>
+        <div class="acard-edit">
+          <h3>🧸 Your Sessions</h3>
+          <p style="font-size:.82rem;color:var(--asoft);margin-bottom:1.2rem">Edit your session details, prices and SumUp payment links below.</p>
+          <div class="session-edit-list" id="sessionEditList"></div>
+          <button class="abtn abtn-ghost" style="margin-top:1rem" onclick="addSession()">+ Add New Session</button>
+        </div>
+      </div>
+
+      <!-- ── CONTACT & ABOUT TAB ── -->
+      <div class="admin-tab-content" id="tab-contact">
+        <div class="download-banner">
+          <div><h3>💾 Remember to save your changes!</h3><p>After editing, click <strong>Download Updated Website</strong> then upload the file to GitHub.</p></div>
+          <button class="download-big-btn" onclick="downloadSite()">⬇️ Download Updated Website</button>
+        </div>
+        <div class="acard-edit">
+          <h3>📍 Contact Details</h3>
+          <div class="afield"><label>Address</label><input id="ed-address" type="text"></div>
+          <div class="arow">
+            <div class="afield"><label>Phone Number</label><input id="ed-phone" type="text"></div>
+            <div class="afield"><label>Charity Number</label><input id="ed-charity" type="text"></div>
+          </div>
+          <div class="arow">
+            <div class="afield"><label>Facebook URL</label><input id="ed-facebook" type="text"></div>
+            <div class="afield"><label>Instagram URL</label><input id="ed-instagram" type="text"></div>
+          </div>
+        </div>
+        <div class="acard-edit">
+          <h3>📖 About Section</h3>
+          <div class="afield"><label>Section Heading</label><input id="ed-aboutTitle" type="text"></div>
+          <div class="afield"><label>Main Paragraph</label><textarea id="ed-aboutBody"></textarea></div>
+          <div class="afield"><label>Charity Note (shown at bottom of About)</label><input id="ed-charityNote" type="text"></div>
+        </div>
+        <div class="acard-edit">
+          <h3>🦸 Hero Section (top of page)</h3>
+          <div class="afield"><label>Main Heading (use *word* for highlighted word)</label><input id="ed-heroTitle" type="text"></div>
+          <div class="afield"><label>Subtitle / Description</label><textarea id="ed-heroSub" style="min-height:60px"></textarea></div>
+        </div>
+        <div class="acard-edit">
+          <h3>📊 Fact Boxes</h3>
+          <p style="font-size:.82rem;color:var(--asoft);margin-bottom:1rem">The four stat boxes shown in the About section.</p>
+          <div id="factBoxEditor"></div>
+        </div>
+      </div>
+
+      <!-- ── FAQs TAB ── -->
+      <div class="admin-tab-content" id="tab-faqs">
+        <div class="download-banner">
+          <div><h3>💾 Remember to save your changes!</h3><p>After editing FAQs, click <strong>Download Updated Website</strong> then upload to GitHub.</p></div>
+          <button class="download-big-btn" onclick="downloadSite()">⬇️ Download Updated Website</button>
+        </div>
+        <div class="acard-edit">
+          <h3>❓ Frequently Asked Questions</h3>
+          <div class="faq-edit-list" id="faqEditList"></div>
+          <button class="abtn abtn-ghost" style="margin-top:1rem" onclick="addFaq()">+ Add New FAQ</button>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS TAB ── -->
+      <div class="admin-tab-content" id="tab-settings">
+        <div class="acard-edit">
+          <h3>🔑 Change Admin Password</h3>
+          <p style="font-size:.82rem;color:var(--asoft);margin-bottom:1.2rem">Change the password used to log in to this admin panel. After changing, download and re-upload the site to GitHub.</p>
+          <div class="arow">
+            <div class="afield"><label>New Password</label><input type="password" id="newPw" placeholder="Enter new password"></div>
+            <div class="afield"><label>Confirm Password</label><input type="password" id="confirmPw" placeholder="Repeat new password"></div>
+          </div>
+          <button class="abtn abtn-blue" onclick="changePassword()">Update Password</button>
+        </div>
+        <div class="acard-edit" style="margin-top:1.5rem">
+          <h3>🌐 How to Update Your Website</h3>
+          <div style="font-size:.88rem;color:var(--asoft);line-height:1.9">
+            <p style="color:var(--atext);font-weight:700;margin-bottom:.5rem">After making changes to Sessions, Contact, About or FAQs:</p>
+            <p>1. Click the <strong style="color:#fff">⬇️ Download Updated Website</strong> button in any edit tab.</p>
+            <p>2. Go to your GitHub repository at <strong style="color:#fff">github.com</strong></p>
+            <p>3. Find <strong style="color:#fff">index.html</strong> in the file list and click it.</p>
+            <p>4. Click the <strong style="color:#fff">pencil ✏️ edit icon</strong> (top right of the file view).</p>
+            <p>5. Select all the text and delete it.</p>
+            <p>6. Open the downloaded file in Notepad, select all (Ctrl+A), copy (Ctrl+C), paste into GitHub.</p>
+            <p>7. Click <strong style="color:#fff">Commit changes</strong> — your site updates in ~1 minute!</p>
+            <br>
+            <p style="color:var(--atext);font-weight:700;margin-bottom:.5rem">⚙️ Setting up the Booking Confirmed page (one-time setup):</p>
+            <p>1. In your <strong style="color:#fff">SumUp dashboard</strong>, go to each Payment Link.</p>
+            <p>2. Edit the link and find <strong style="color:#fff">"Redirect URL"</strong> or <strong style="color:#fff">"Success URL"</strong>.</p>
+            <p>3. Set it to: <strong style="color:#fff">https://YOUR-GITHUB-USERNAME.github.io/thankyou.html</strong></p>
+            <p>4. After paying, SumUp will send customers straight to their booking confirmation! ✅</p>
+            <br>
+            <p style="color:var(--atext);font-weight:700;margin-bottom:.5rem">Bookings are different — they save automatically on THIS device and don't need uploading.</p>
+          </div>
+        </div>
+        <div class="acard-edit" style="margin-top:1.5rem">
+          <h3 style="color:var(--ared)">⚠️ Danger Zone</h3>
+          <p style="font-size:.82rem;color:var(--asoft);margin-bottom:1rem">Clear all bookings from this device. This cannot be undone!</p>
+          <button class="abtn abtn-red" onclick="clearAllBookings()">🗑️ Clear All Bookings</button>
+        </div>
+      </div>
+
+    </div><!-- admin-body -->
+  </div><!-- admin-shell -->
+</div><!-- adminPanel -->
+
+<script>
+// ════════════════════════════════════════════════════════════════
+//  SITE CONFIGURATION
+//  All content is stored here. Admin edits update this object,
+//  then Download Updated Website bakes new values back in.
+// ════════════════════════════════════════════════════════════════
+const CONFIG = {
+  adminPassword: 'cornerhouse2025',
+
+  contact: {
+    address: '1 Berner Street, Birkenhead, CH41 4JY',
+    phone: '0151 245 6949',
+    charityNumber: '1197336',
+    facebook: 'https://www.facebook.com/thecornerhousecio',
+    instagram: 'https://www.instagram.com/the_corner_house_cio/',
+    facebookMessenger: 'https://m.me/beewirral',
+  },
+
+  hero: {
+    title: "Wirral's most *loved* baby & toddler group",
+    subtitle: "A warm, welcoming space in Birkenhead for babies, toddlers and their grown-ups. Stay and play, learn together, make friends for life.",
+  },
+
+  about: {
+    title: "A home from home for Wirral families",
+    body: "Formerly Bee Early Years CIO, proudly renamed The Corner House in 2022. We sit on the corner of the road, and many families say we feel just like home — that's exactly what we've always strived for.",
+    charityNote: "💜 Registered Charity No. 1197336 — not-for-profit, community-led.",
+    facts: [
+      { value: 'Tue–Fri', label: 'Sessions weekly' },
+      { value: '£1.50', label: 'Min. price per child' },
+      { value: '20+ yrs', label: "Expert experience" },
+      { value: 'Free', label: 'On-road parking' },
+    ],
+  },
+
+  sessions: [
+    { icon:'🧸', name:'Stay & Play',     desc:'Meet other grown-ups and spend quality time with your little one. Fun, friendly sessions with no commitment needed!', days:'Tue, Wed, Thu & Fri', price:2.50, flat:false, color:'#FF6B6B', sumupLink:'https://pay.sumup.com/b2c/REPLACE_ME' },
+    { icon:'🤲', name:'Infant Massage',  desc:'Five-week bonding course led by expert Lisa Heath with over 20 years of experience supporting babies and families.', days:'Every Thursday', price:15.00, flat:true,  color:'#06D6A0', sumupLink:'https://pay.sumup.com/b2c/REPLACE_ME' },
+    { icon:'🌈', name:'Sensory Play',    desc:'Calming and educational play using sensory toys and equipment. Extremely popular — book early to avoid missing out!', days:'Check with us for times', price:2.50, flat:false, color:'#4CC9F0', sumupLink:'https://pay.sumup.com/b2c/REPLACE_ME' },
+    { icon:'☀️', name:'Positivity Club', desc:'Builds confidence, friendships and joy for under 5s in one uplifting, nurturing session each week.', days:'Under 5s · Check for times', price:2.50, flat:false, color:'#FFD166', sumupLink:'https://pay.sumup.com/b2c/REPLACE_ME' },
+    { icon:'💜', name:'SEN Group',       desc:'A dedicated, inclusive group for children with special educational needs and their carers. Everyone welcome.', days:'Inclusive · Check for times', price:2.50, flat:false, color:'#9B5DE5', sumupLink:'https://pay.sumup.com/b2c/REPLACE_ME' },
+  ],
+
+  faqs: [
+    { q:'Can I just turn up on the day?', a:"We prefer booking online as we fill up fast! If you decide on the day, give us a call and we may be able to fit you in — we love meeting new people." },
+    { q:'How much does it cost?', a:"Most sessions are around £2.50 per child, dropping to as little as £1.50 in the colder winter months to help families with heating costs." },
+    { q:'Is there parking nearby?', a:"Absolutely — free on-road parking right outside, plus we're easy to reach by public transport." },
+    { q:'Is it a friendly group?', a:"We're biased, but yes! One mum called us 'Simply the best group ever!!' — we think you'll agree once you visit." },
+    { q:'What is infant massage?', a:"A five-week course teaching you effective, relaxing massage for your baby. Led by expert Lisa Heath with 20+ years' experience. It supports bonding and development." },
+    { q:"Do I have to commit to coming regularly?", a:"No commitment at all — but most parents keep coming back week after week because they love it!" },
+  ],
+};
+// ════════════════════════════════════════════════════════════════
+
+// ── BOOKINGS (localStorage) ───────────────────────────────────
+let bookings = JSON.parse(localStorage.getItem('chh_bookings') || '[]');
+let selectedSession = null;
+let activeFilter = 'all';
+
+function saveBookings() { localStorage.setItem('chh_bookings', JSON.stringify(bookings)); }
+
+// ── RENDER PUBLIC SITE ────────────────────────────────────────
+function renderSite() {
+  const C = CONFIG;
+
+  // Topbar
+  document.getElementById('topbarEl').innerHTML =
+    '🏆 Voted <strong>Wirral\'s Best for Kids 2024</strong> — Wirral Globe! &nbsp;|&nbsp; <a href="tel:' +
+    C.contact.phone.replace(/\s/g,'') + '">' + C.contact.phone + '</a>';
+
+  // Nav subtitle
+  document.getElementById('navSubtitle').textContent = 'Family & Community Hub · Birkenhead';
+
+  // Hero title (convert *word* to <em>)
+  document.getElementById('heroTitle').innerHTML = C.hero.title.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  document.getElementById('heroSub').textContent = C.hero.subtitle;
+
+  // Hero chips
+  document.getElementById('heroChips').innerHTML =
+    '<div class="chip">📍 ' + C.contact.address + '</div>' +
+    '<div class="chip">📞 ' + C.contact.phone + '</div>' +
+    '<div class="chip">💷 From £' + Math.min(...C.sessions.map(s=>s.price)).toFixed(2) + ' per child</div>' +
+    '<div class="chip">💳 Secure SumUp payments</div>';
+
+  // Hero act grid (first 4 sessions)
+  document.getElementById('heroActGrid').innerHTML = C.sessions.slice(0,4).map(s =>
+    '<div class="act-card"><span class="act-icon">' + s.icon + '</span><h4>' + s.name + '</h4>' +
+    '<p>' + s.days + '</p><div class="act-price">' + (s.flat ? '£'+s.price.toFixed(2) : 'From £'+s.price.toFixed(2)) + '</div></div>'
+  ).join('');
+
+  // About
+  document.getElementById('aboutTitle').textContent = C.about.title;
+  document.getElementById('aboutBody').textContent = C.about.body;
+  document.getElementById('charityNote').textContent = C.about.charityNote;
+  document.getElementById('aboutFacts').innerHTML = C.about.facts.map(f =>
+    '<div class="fact"><div class="fn">' + f.value + '</div><div class="fl">' + f.label + '</div></div>'
+  ).join('');
+
+  // Activities grid
+  document.getElementById('activitiesGrid').innerHTML = C.sessions.map(s =>
+    '<div class="acard"><div class="acard-stripe" style="background:' + s.color + '"></div>' +
+    '<div class="acard-price" style="background:' + s.color + ';color:' + (s.color==='#FFD166'?'#2D2926':'#fff') + '">' +
+    (s.flat ? '£'+s.price.toFixed(2) : 'From £'+s.price.toFixed(2)) + '</div>' +
+    '<span class="acard-icon">' + s.icon + '</span><h3>' + s.name + '</h3>' +
+    '<p>' + s.desc + '</p>' +
+    '<div class="ameta"><span class="amchip">📅 ' + s.days + '</span></div></div>'
+  ).join('') +
+    '<div class="acard" style="background:linear-gradient(135deg,#FFE8E8,#FFF5D6);border:2px dashed #FF6B6B">' +
+    '<div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:1rem">' +
+    '<span style="font-size:2.5rem;margin-bottom:.8rem">📞</span>' +
+    '<h3 style="color:#FF6B6B;font-family:\'Baloo 2\',sans-serif">Not sure which?</h3>' +
+    '<p style="font-size:.87rem;color:#6B5E54;margin-bottom:1.1rem">Give us a call — we\'ll find the perfect session!</p>' +
+    '<a href="tel:' + C.contact.phone.replace(/\s/g,'') + '" class="btn btn-coral" style="font-size:.85rem">Call ' + C.contact.phone + '</a>' +
+    '</div></div>';
+
+  // Contact section
+  document.getElementById('contactAddr').textContent = C.contact.address;
+  const phoneEl = document.getElementById('contactPhone');
+  phoneEl.textContent = C.contact.phone;
+  phoneEl.href = 'tel:' + C.contact.phone.replace(/\s/g,'');
+  document.getElementById('contactFB').href = C.contact.facebook;
+  document.getElementById('contactIG').href = C.contact.instagram;
+  document.getElementById('whyPhone').textContent = 'Ring us on ' + C.contact.phone + ' or message us on Facebook.';
+
+  // Booking session cards
+  buildBookingCards();
+
+  // FAQ
+  document.getElementById('faqGrid').innerHTML = CONFIG.faqs.map((f,i) =>
+    '<div class="faq-item" id="fq'+i+'"><div class="faq-q" onclick="toggleFAQ('+i+')"><span>'+f.q+'</span><span class="ar">▾</span></div>' +
+    '<div class="faq-a">'+f.a+'</div></div>'
+  ).join('');
+
+  // Footer
+  document.getElementById('footerAbout').textContent = 'A warm, welcoming space for babies, toddlers and their families in Birkenhead. Voted Wirral\'s Best for Kids 2024.';
+  document.getElementById('footFB').href = C.contact.facebook;
+  document.getElementById('footIG').href = C.contact.instagram;
+  document.getElementById('footerSessions').innerHTML = C.sessions.map(s =>
+    '<a href="#activities">' + s.name + '</a>'
+  ).join('');
+  document.getElementById('footerAddr').innerHTML = C.contact.address.replace(', ', ',<br>');
+  document.getElementById('footerPhone').textContent = C.contact.phone;
+  document.getElementById('footerPhone').href = 'tel:' + C.contact.phone.replace(/\s/g,'');
+  document.getElementById('footerFBLink').href = C.contact.facebookMessenger;
+  document.getElementById('footerCopy').textContent = '© ' + new Date().getFullYear() + ' The Corner House Hub CIO. All rights reserved.';
+}
+
+function buildBookingCards() {
+  document.getElementById('bookingSessionCards').innerHTML = CONFIG.sessions.map((s,i) =>
+    '<div class="scard" data-idx="'+i+'" onclick="selectSession(this)">' +
+    '<span style="font-size:1.4rem;flex-shrink:0">' + s.icon + '</span>' +
+    '<div style="flex:1"><div class="scard-name">' + s.name + '</div><div class="scard-days">' + s.days + '</div></div>' +
+    '<div class="scard-price">£' + s.price.toFixed(2) + '</div>' +
+    '<div class="scard-check">✓</div></div>'
+  ).join('');
+}
+
+// ── BOOKING FORM ──────────────────────────────────────────────
+document.getElementById('f-date').min = new Date().toISOString().split('T')[0];
+
+function selectSession(el) {
+  document.querySelectorAll('.scard').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSession = parseInt(el.dataset.idx);
+  updatePrice();
+  document.getElementById('payBtn').disabled = false;
+}
+
+function updatePrice() {
+  if (selectedSession === null) return;
+  const s = CONFIG.sessions[selectedSession];
+  const qty = Math.max(1, parseInt(document.getElementById('f-children').value)||1);
+  const total = s.flat ? s.price : s.price * qty;
+  document.getElementById('pempty').style.display = 'none';
+  document.getElementById('prows').style.display = '';
+  document.getElementById('ps-session').textContent = s.name;
+  document.getElementById('ps-unit').textContent = '£' + s.price.toFixed(2) + (s.flat ? ' (flat rate)' : ' each');
+  document.getElementById('ps-qty').textContent = s.flat ? '—' : '× ' + qty;
+  document.getElementById('ps-total').textContent = '£' + total.toFixed(2);
+  document.getElementById('payBtnText').textContent = '💳 Pay £' + total.toFixed(2) + ' with SumUp';
+}
+
+function handlePay() {
+  const name  = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const date  = document.getElementById('f-date').value;
+  const qty   = Math.max(1, parseInt(document.getElementById('f-children').value)||1);
+  const age   = document.getElementById('f-age').value;
+  const phone = document.getElementById('f-phone').value.trim();
+  const notes = document.getElementById('f-notes').value.trim();
+  if (selectedSession === null) { showToast('Please choose a session first.', 'err'); return; }
+  if (!name || !email || !date) { showToast('Please fill in your name, email and date.', 'err'); return; }
+  const s = CONFIG.sessions[selectedSession];
+  const total = s.flat ? s.price : s.price * qty;
+  const ref   = 'TCH-' + String(bookings.length + 1).padStart(3,'0');
+  const isDemo = s.sumupLink.includes('REPLACE_ME');
+
+  // Save full booking to admin list
+  bookings.unshift({id:ref,name,email,phone,age,session:s.name,date,children:qty,notes,status:'pending',payment:'awaiting',amount:total,created:new Date().toLocaleString('en-GB')});
+  saveBookings();
+
+  // Save a lightweight copy for the Thank You page to read
+  localStorage.setItem('chh_pending_booking', JSON.stringify({
+    ref, name, email, session:s.name, icon:s.icon, date, children:qty, amount:total
+  }));
+
+  // Show modal
+  document.getElementById('memo').textContent = isDemo ? '⚙️' : '💳';
+  document.getElementById('mtitle').textContent = isDemo ? 'Add your SumUp link!' : 'Almost there, ' + name.split(' ')[0] + '!';
+  document.getElementById('msub').textContent = isDemo
+    ? 'Open the Admin panel → Sessions tab → paste your SumUp link for "' + s.name + '" then download and upload the site.'
+    : "You'll be taken to SumUp to pay securely. Once done, SumUp will bring you straight back to your booking confirmation!";
+  document.getElementById('mdetail').innerHTML =
+    '<div class="mrow"><span class="k">Ref</span><span class="v">' + ref + '</span></div>' +
+    '<div class="mrow"><span class="k">Session</span><span class="v">' + s.name + '</span></div>' +
+    '<div class="mrow"><span class="k">Date</span><span class="v">' + fmtDate(date) + '</span></div>' +
+    '<div class="mrow"><span class="k">Children</span><span class="v">' + qty + '</span></div>' +
+    '<div class="mrow"><span class="k">Amount</span><span class="v g">£' + total.toFixed(2) + '</span></div>';
+  const btn = document.getElementById('mcloseBtn');
+  if (isDemo) {
+    btn.textContent = 'Got it ✓';
+    btn.style.background = '#3B82F6';
+    btn.onclick = () => closeOverlay();
+  } else {
+    btn.textContent = '💳 Pay £' + total.toFixed(2) + ' with SumUp →';
+    btn.style.background = '#00a651';
+    // Redirect in SAME tab — SumUp will then redirect back to thankyou.html
+    btn.onclick = () => { window.location.href = s.sumupLink; };
+  }
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeOverlay(e) { if (!e || e.target===document.getElementById('overlay')) document.getElementById('overlay').classList.remove('open'); }
+
+function clearBookingForm() {
+  ['f-name','f-email','f-phone','f-notes'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('f-age').value=''; document.getElementById('f-children').value='1'; document.getElementById('f-date').value='';
+  document.querySelectorAll('.scard').forEach(c=>c.classList.remove('selected'));
+  selectedSession=null;
+  document.getElementById('pempty').style.display=''; document.getElementById('prows').style.display='none';
+  document.getElementById('payBtnText').textContent='Select a session to continue';
+  document.getElementById('payBtn').disabled=true;
+}
+
+function toggleFAQ(i) {
+  const el=document.getElementById('fq'+i); const was=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));
+  if(!was) el.classList.add('open');
+}
+
+// ── ADMIN AUTH ────────────────────────────────────────────────
+function openAdmin() {
+  document.getElementById('adminPanel').classList.add('open');
+  document.getElementById('pwInput').value='';
+  document.getElementById('loginErr').style.display='none';
+  document.getElementById('adminLogin').style.display='flex';
+  document.getElementById('adminShell').classList.remove('visible');
+}
+
+function doLogin() {
+  const pw = document.getElementById('pwInput').value;
+  if (pw === CONFIG.adminPassword) {
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminShell').classList.add('visible');
+    populateAdminEditors();
+    renderAdminBookings();
+  } else {
+    document.getElementById('loginErr').style.display='block';
+  }
+}
+
+function exitAdmin() {
+  document.getElementById('adminPanel').classList.remove('open');
+}
+
+// ── ADMIN TABS ────────────────────────────────────────────────
+function showTab(name, el) {
+  document.querySelectorAll('.admin-tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.atab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  el.classList.add('active');
+}
+
+// ── POPULATE EDITORS ──────────────────────────────────────────
+function populateAdminEditors() {
+  const C = CONFIG;
+  // Contact fields
+  document.getElementById('ed-address').value   = C.contact.address;
+  document.getElementById('ed-phone').value     = C.contact.phone;
+  document.getElementById('ed-charity').value   = C.contact.charityNumber;
+  document.getElementById('ed-facebook').value  = C.contact.facebook;
+  document.getElementById('ed-instagram').value = C.contact.instagram;
+  // About fields
+  document.getElementById('ed-aboutTitle').value  = C.about.title;
+  document.getElementById('ed-aboutBody').value   = C.about.body;
+  document.getElementById('ed-charityNote').value = C.about.charityNote;
+  // Hero
+  document.getElementById('ed-heroTitle').value = C.hero.title;
+  document.getElementById('ed-heroSub').value   = C.hero.subtitle;
+  // Facts
+  document.getElementById('factBoxEditor').innerHTML = C.about.facts.map((f,i) =>
+    '<div class="arow" style="margin-bottom:.8rem">' +
+    '<div class="afield"><label>Fact ' + (i+1) + ' — Value</label><input type="text" id="fact-v-'+i+'" value="'+f.value+'"></div>' +
+    '<div class="afield"><label>Fact ' + (i+1) + ' — Label</label><input type="text" id="fact-l-'+i+'" value="'+f.label+'"></div></div>'
+  ).join('');
+  // Sessions
+  renderSessionEditor();
+  // FAQs
+  renderFaqEditor();
+}
+
+// ── SESSION EDITOR ────────────────────────────────────────────
+function renderSessionEditor() {
+  document.getElementById('sessionEditList').innerHTML = CONFIG.sessions.map((s,i) =>
+    '<div class="session-edit-item">' +
+    '<div class="session-edit-header"><span>' + s.icon + ' ' + s.name + '</span>' +
+    '<button class="del-session-btn" onclick="deleteSession('+i+')">🗑 Remove</button></div>' +
+    '<div class="arow3">' +
+    '<div class="afield"><label>Icon (emoji)</label><input type="text" id="si-icon-'+i+'" value="'+s.icon+'" style="font-size:1.2rem"></div>' +
+    '<div class="afield"><label>Session Name</label><input type="text" id="si-name-'+i+'" value="'+s.name+'"></div>' +
+    '<div class="afield"><label>Price (£)</label><input type="number" id="si-price-'+i+'" value="'+s.price+'" step="0.50" min="0"></div>' +
+    '</div>' +
+    '<div class="arow">' +
+    '<div class="afield"><label>Days / Times</label><input type="text" id="si-days-'+i+'" value="'+s.days+'"></div>' +
+    '<div class="afield"><label>Flat rate? (tick = yes, e.g. course)</label><br><input type="checkbox" id="si-flat-'+i+'"'+(s.flat?' checked':'')+' style="width:auto;margin-top:.6rem;transform:scale(1.4)"></div>' +
+    '</div>' +
+    '<div class="afield"><label>Description</label><textarea id="si-desc-'+i+'">'+s.desc+'</textarea></div>' +
+    '<div class="afield"><label>🟢 SumUp Payment Link</label><input type="text" id="si-link-'+i+'" value="'+s.sumupLink+'" placeholder="https://pay.sumup.com/b2c/..."></div>' +
+    '</div>'
+  ).join('');
+}
+
+function addSession() {
+  CONFIG.sessions.push({icon:'⭐',name:'New Session',desc:'Description of this session.',days:'Check with us',price:2.50,flat:false,color:'#FF6B6B',sumupLink:'https://pay.sumup.com/b2c/REPLACE_ME'});
+  renderSessionEditor();
+}
+
+function deleteSession(i) {
+  if(!confirm('Remove "' + CONFIG.sessions[i].name + '"? This cannot be undone.')) return;
+  CONFIG.sessions.splice(i,1);
+  renderSessionEditor();
+  showToast('Session removed. Download & upload the site to publish.','warn');
+}
+
+function collectSessionEdits() {
+  CONFIG.sessions.forEach((s,i) => {
+    s.icon  = document.getElementById('si-icon-'+i).value.trim() || s.icon;
+    s.name  = document.getElementById('si-name-'+i).value.trim() || s.name;
+    s.price = parseFloat(document.getElementById('si-price-'+i).value) || s.price;
+    s.days  = document.getElementById('si-days-'+i).value.trim();
+    s.flat  = document.getElementById('si-flat-'+i).checked;
+    s.desc  = document.getElementById('si-desc-'+i).value.trim();
+    s.sumupLink = document.getElementById('si-link-'+i).value.trim();
+  });
+}
+
+// ── FAQ EDITOR ────────────────────────────────────────────────
+function renderFaqEditor() {
+  document.getElementById('faqEditList').innerHTML = CONFIG.faqs.map((f,i) =>
+    '<div class="faq-edit-item">' +
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">' +
+    '<span style="font-weight:800;color:var(--atext);font-size:.88rem">FAQ ' + (i+1) + '</span>' +
+    '<button class="del-session-btn" onclick="deleteFaq('+i+')">🗑 Remove</button></div>' +
+    '<div class="afield"><label>Question</label><input type="text" id="fq-q-'+i+'" value="'+f.q.replace(/"/g,'&quot;')+'"></div>' +
+    '<div class="afield"><label>Answer</label><textarea id="fq-a-'+i+'">'+f.a+'</textarea></div>' +
+    '</div>'
+  ).join('');
+}
+
+function addFaq() {
+  CONFIG.faqs.push({q:'New question?', a:'Answer goes here.'});
+  renderFaqEditor();
+}
+
+function deleteFaq(i) {
+  if(!confirm('Remove this FAQ?')) return;
+  CONFIG.faqs.splice(i,1);
+  renderFaqEditor();
+}
+
+function collectFaqEdits() {
+  CONFIG.faqs = CONFIG.faqs.map((_,i) => ({
+    q: document.getElementById('fq-q-'+i).value.trim(),
+    a: document.getElementById('fq-a-'+i).value.trim(),
+  }));
+}
+
+// ── COLLECT ALL EDITS ─────────────────────────────────────────
+function collectAllEdits() {
+  // Contact
+  CONFIG.contact.address       = document.getElementById('ed-address').value.trim();
+  CONFIG.contact.phone         = document.getElementById('ed-phone').value.trim();
+  CONFIG.contact.charityNumber = document.getElementById('ed-charity').value.trim();
+  CONFIG.contact.facebook      = document.getElementById('ed-facebook').value.trim();
+  CONFIG.contact.instagram     = document.getElementById('ed-instagram').value.trim();
+  // About
+  CONFIG.about.title       = document.getElementById('ed-aboutTitle').value.trim();
+  CONFIG.about.body        = document.getElementById('ed-aboutBody').value.trim();
+  CONFIG.about.charityNote = document.getElementById('ed-charityNote').value.trim();
+  // Hero
+  CONFIG.hero.title    = document.getElementById('ed-heroTitle').value.trim();
+  CONFIG.hero.subtitle = document.getElementById('ed-heroSub').value.trim();
+  // Facts
+  CONFIG.about.facts = CONFIG.about.facts.map((_,i) => ({
+    value: document.getElementById('fact-v-'+i).value.trim(),
+    label: document.getElementById('fact-l-'+i).value.trim(),
+  }));
+  // Sessions & FAQs
+  collectSessionEdits();
+  collectFaqEdits();
+}
+
+// ── CHANGE PASSWORD ───────────────────────────────────────────
+function changePassword() {
+  const np = document.getElementById('newPw').value;
+  const cp = document.getElementById('confirmPw').value;
+  if (!np) { showToast('Please enter a new password.','err'); return; }
+  if (np !== cp) { showToast('Passwords do not match.','err'); return; }
+  if (np.length < 6) { showToast('Password must be at least 6 characters.','err'); return; }
+  CONFIG.adminPassword = np;
+  showToast('Password updated! Download & upload the site to save permanently.','warn');
+  document.getElementById('newPw').value=''; document.getElementById('confirmPw').value='';
+}
+
+// ── DOWNLOAD UPDATED SITE ─────────────────────────────────────
+function downloadSite() {
+  collectAllEdits();
+  renderSite(); // Update live preview
+
+  // Get current page HTML
+  const html = document.documentElement.outerHTML;
+
+  // Find the CONFIG object and replace with current values
+  const configStr = 'const CONFIG = ' + JSON.stringify(CONFIG, null, 2) + ';';
+  const updated = html.replace(/const CONFIG = \{[\s\S]*?\};\n\/\/ ═+/,
+    configStr + '\n// ════════════════════════════════════════════════════════════════');
+
+  const blob = new Blob([updated], {type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'index.html';
+  a.click();
+  showToast('✅ index.html downloaded! Upload it to GitHub to publish your changes.','');
+}
+
+// ── ADMIN BOOKINGS ────────────────────────────────────────────
+function renderAdminBookings() {
+  const data = activeFilter==='all' ? bookings : bookings.filter(b=>b.status===activeFilter);
+  document.getElementById('as-total').textContent     = bookings.length;
+  document.getElementById('as-confirmed').textContent = bookings.filter(b=>b.status==='confirmed').length;
+  document.getElementById('as-pending').textContent   = bookings.filter(b=>b.status==='pending').length;
+  const rev = bookings.filter(b=>b.payment==='paid').reduce((s,b)=>s+b.amount,0);
+  document.getElementById('as-revenue').textContent = '£' + rev.toFixed(2);
+  const tbody = document.getElementById('adminTBody');
+  if (!data.length) { tbody.innerHTML='<tr><td colspan="9"><div class="empty-row">No '+( activeFilter==='all'?'':activeFilter+' ')+'bookings yet.</div></td></tr>'; return; }
+  tbody.innerHTML = data.map(b =>
+    '<tr><td style="font-family:monospace;font-size:.72rem;opacity:.5">'+b.id+'</td>' +
+    '<td><div style="font-weight:700;color:var(--atext)">'+b.name+'</div><div style="font-size:.72rem;color:var(--asoft)">'+b.email+'</div></td>' +
+    '<td>'+b.session+'</td><td>'+fmtDate(b.date)+'</td><td>'+b.children+'</td>' +
+    '<td><span class="pill p-'+b.status+'">'+b.status+'</span></td>' +
+    '<td><span class="ppill '+(b.payment==='paid'?'pp-paid':'pp-wait')+'">'+(b.payment==='paid'?'✓ Paid':'⏳ Awaiting')+'</span></td>' +
+    '<td style="font-weight:800;color:var(--sun)">£'+b.amount.toFixed(2)+'</td>' +
+    '<td><div style="display:flex;gap:.4rem;flex-wrap:wrap">' +
+    (b.payment!=='paid'?'<button class="tbtn tb-g" onclick="markPaid(\''+b.id+'\')">✓ Paid</button>':'')+
+    (b.status!=='confirmed'?'<button class="tbtn tb-y" onclick="setStatus(\''+b.id+'\',\'confirmed\')">Confirm</button>':'')+
+    (b.status!=='cancelled'?'<button class="tbtn tb-r" onclick="setStatus(\''+b.id+'\',\'cancelled\')">Cancel</button>':'')+
+    '<button class="tbtn tb-r" onclick="delBooking(\''+b.id+'\')">✕</button>' +
+    '</div></td></tr>'
+  ).join('');
+}
+
+function markPaid(id) {
+  const b=bookings.find(x=>x.id===id);
+  if(b){b.payment='paid';b.status='confirmed';saveBookings();renderAdminBookings();showToast(id+' marked as paid ✓');}
+}
+function setStatus(id,st) {
+  const b=bookings.find(x=>x.id===id);
+  if(b){b.status=st;saveBookings();renderAdminBookings();showToast('Booking updated ✓');}
+}
+function delBooking(id) {
+  if(!confirm('Delete booking '+id+'? This cannot be undone.')) return;
+  bookings=bookings.filter(x=>x.id!==id);saveBookings();renderAdminBookings();showToast('Booking deleted.');
+}
+function filterTbl(f,btn) {
+  activeFilter=f;
+  document.querySelectorAll('.flt-bar .fbt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderAdminBookings();
+}
+function clearAllBookings() {
+  if(!confirm('Clear ALL bookings? This cannot be undone!')) return;
+  bookings=[];saveBookings();renderAdminBookings();showToast('All bookings cleared.','warn');
+}
+
+// ── HELPERS ───────────────────────────────────────────────────
+function fmtDate(d) {
+  if(!d) return '—';
+  return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+}
+
+function showToast(msg,type) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast'+(type?' '+type:'');
+  void t.offsetWidth; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4500);
+}
+
+// ── KEYBOARD SHORTCUT: Ctrl+Shift+A to open admin ────────────
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.shiftKey && e.key==='A') openAdmin();
+});
+
+// ── HASH ROUTING: yoursite.com/#admin ────────────────────────
+if (window.location.hash === '#admin') openAdmin();
+window.addEventListener('hashchange', () => { if(window.location.hash==='#admin') openAdmin(); });
+
+// ── SEED DEMO BOOKINGS ────────────────────────────────────────
+if (bookings.length === 0) {
+  bookings = [
+    {id:'TCH-001',name:'Emma Thompson',email:'emma@gmail.com',phone:'07700900100',age:'6–12 months',session:'Stay & Play',date:'2025-04-08',children:1,notes:'First visit!',status:'confirmed',payment:'paid',amount:2.50,created:'12/03/2025'},
+    {id:'TCH-002',name:'Laura Davies',email:'laura@yahoo.com',phone:'07700900200',age:'3–6 months',session:'Infant Massage',date:'2025-04-10',children:1,notes:'',status:'confirmed',payment:'paid',amount:15.00,created:'12/03/2025'},
+    {id:'TCH-003',name:'Natalie Khan',email:'nkhan@mail.com',phone:'',age:'1–2 years',session:'Sensory Play',date:'2025-04-11',children:2,notes:'Twins!',status:'pending',payment:'awaiting',amount:5.00,created:'12/03/2025'},
+  ];
+  saveBookings();
+}
+
+// ── BOOT ──────────────────────────────────────────────────────
+renderSite();
+</script>
+</body>
+</html>
